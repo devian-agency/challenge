@@ -1,0 +1,139 @@
+@import "./fonts.css";
+@import "tailwindcss";
+/* @custom-variant dark (&:is(.dark *)); */
+
+/* .dark:root {
+} */
+
+:root {
+  --background: #f6f6f6;
+  --foreground: #1c1c1c;
+  --heading: linear-gradient(0deg, #121212 0%, #121212b3 100%);
+  --button: #1c1c1c;
+  --icon: #b9b9b9;
+  --icon-background: #1c1c1c;
+  --card-text: #545454;
+  --border: #e3e3e3;
+  --primary: #4043ff;
+  --shadow-soft: 0.6021873017743928px 0.6021873017743928px 0px #1c1c1c00,
+    0px 2.288533303243457px 2.288533303243457px 0px #1c1c1c05,
+    0px 10px 10px 0px #1c1c1c14, 0px -6px 6px -5px #fff;
+  --button-shadow-dark: #ffffff26 0px 0px 20px 1.64px inset,
+    #00000021 0px 0.839802px 0.503881px -0.3125px,
+    #00000021 0px 1.99048px 1.19429px -0.625px,
+    #00000021 0px 3.63084px 2.1785px -0.9375px,
+    #00000021 0px 6.03627px 3.62176px -1.25px,
+    #00000021 0px 9.74808px 5.84885px -1.5625px,
+    #00000021 0px 15.9566px 9.57398px -1.875px,
+    #00000021 0px 27.4762px 16.4857px -2.1875px, #00000021 0px 50px 30px -2.5px;
+  --button-shadow-light: 0px 0.6021873017743928px 0.6021873017743928px 0px
+      #1c1c1c03,
+    0px 2.288533303243457px 2.288533303243457px 0px #1c1c1c08,
+    0px 10px 10px 0px #1c1c1c1f, 0px -6px 6px -5px #fff;
+  --button-shadow-primary: #ffffff66 0px 0px 20px 1.64px inset,
+    #4547ff21 0px 0.839802px 0.503881px -0.3125px,
+    #4547ff21 0px 1.99048px 1.19429px -0.625px,
+    #4547ff21 0px 3.63084px 2.1785px -0.9375px,
+    #4547ff21 0px 6.03627px 3.62176px -1.25px,
+    #4547ff21 0px 9.74808px 5.84885px -1.5625px,
+    #4547ff21 0px 15.9566px 9.57398px -1.875px,
+    #4547ff21 0px 27.4762px 16.4857px -2.1875px, #4547ff21 0px 50px 30px -2.5px;
+  --card-shadow: 0px 0.6021873017743928px 0.6021873017743928px 0px #1c1c1c03,
+    0px 2.288533303243457px 2.288533303243457px 0px #1c1c1c08,
+    0px 10px 10px 0px #1c1c1c1f, 0px -6px 6px -5px #fff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-heading: var(--heading);
+  --color-button: var(--button);
+  --color-icon: var(--icon);
+  --color-border: var(--border);
+  --color-icon-background: var(--icon-background);
+  --color-card-text: var(--card-text);
+  --color-primary: var(--primary);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-button-dark: var(--button-shadow-dark);
+  --shadow-button-light: var(--button-shadow-light);
+  --shadow-button-primary: var(--button-shadow-primary);
+  --shadow-card: var(--card-shadow);
+
+  --animate-pulse2: pulse2 1.5s infinite ease-in-out;
+  --font-caveat: "Caveat", cursive, sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-instrument-sans: "Instrument Sans", sans-serif;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.search-none::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.text-heading {
+  background: var(--color-heading);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-card {
+  background: linear-gradient(#1a1a1a 0%, #000000b3 100%);
+}
+
+.animate-role {
+  position: relative;
+  &:before {
+    content: "dfbsdbfj";
+    position: absolute;
+    top: -5px;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: var(--color-primary);
+    transition: width 0.3s ease-in-out;
+  }
+}
+
+@keyframes pulse2 {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+label:has(+ input[required], + textarea[required]):after {
+  content: " *";
+  @apply text-red-500;
+  position: relative;
+  top: 2px;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  flex-shrink: 0;
+  display: flex;
+  animation: marquee var(--speed) linear infinite;
+}
+
+.reverse {
+  animation-direction: reverse;
+}
+.animate-marquee > * {
+  flex-shrink: 0;
+}
