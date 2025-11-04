@@ -17,14 +17,14 @@ export default function Button({
   const variants = {
     dark: "bg-button text-background shadow-button-dark hover:bg-primary hover:shadow-button-primary",
     light:
-      "bg-background text-foreground hover:text-primary shadow-button-light",
+      "bg-background text-foreground hover:text-primary shadow-button-light border border-white",
     primary: "bg-primary text-white shadow-button-primary",
   };
 
   return (
     <button
       className={cn(
-        "font-instrument-sans font-medium relative bg-button text-background py-1.5 border border-white px-6 rounded-2xl w-fit h-fit overflow-hidden transition-colors cursor-pointer",
+        "font-instrument-sans font-medium relative bg-button text-background py-1.5 px-6 rounded-2xl w-fit h-fit overflow-hidden transition-colors cursor-pointer",
         "group",
         variants[variant],
         className
@@ -36,7 +36,7 @@ export default function Button({
         <span className="group-hover:-translate-y-2/1 transition-transform">
           {text}
         </span>
-        <span className="absolute left-1/2 -translate-x-1/2 translate-y-2/1 group-hover: group-hover:translate-y-0 transition-transform">
+        <span className="absolute left-1/2 text-nowrap -translate-x-1/2 translate-y-2/1 group-hover: group-hover:translate-y-0 transition-transform">
           {text}
         </span>
       </span>
