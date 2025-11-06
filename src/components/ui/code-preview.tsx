@@ -1,5 +1,3 @@
-"use client";
-
 import cn from "@/utils/ClassName";
 
 import { Eye, Code } from "lucide-react";

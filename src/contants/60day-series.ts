@@ -579,7 +579,7 @@ export async function POST(request: NextRequest) {
    const admin: Mail.Options = {
     from: process.env.EMAIL,
     to: email,
-    subject: \`New Contact Form Submission: `+"${name}"+`\`,
+    subject: \`New Contact Form Submission: \${name}\`,
     replyTo: email,
     html: \`
     <!DOCTYPE html>
@@ -647,7 +647,7 @@ export async function POST(request: NextRequest) {
           <div class="header">New Contact Form Submission</div>
 
           <div class="content">
-            <p><strong>Name:</strong> `+"${name} ${family_name ? "+"\` ${family_name}\` : "+'""'+`}</p>
+            <p><strong>Name:</strong> \${name} \${family_name ? \` \${family_name}\` : ""}</p>
             <p><strong>Email:</strong> `+"${email}"+`</p>
             <p><strong>Purpose:</strong> `+"${subject}"+`</p>
             <p><strong>Message:</strong></p>
@@ -669,12 +669,12 @@ export async function POST(request: NextRequest) {
 
 You have received a new contact form submission from your portfolio. Here are the details:
 
-- Name: `+"${name} ${family_name ? " + '" ${family_name}"' + ` : ""}
-- Email: `+"${email}"+`
-- Purpose: `+"${subject}"+`
+- Name: \${name} \${family_name ? \`\${family_name}\` : ""}
+- Email: \${email}
+- Purpose: \${subject}
 - Message: 
 
-"`+"${message}"+`"
+"\${message}"
 
 Please review the message and respond if needed.
 
@@ -1450,5 +1450,5 @@ export default function cn(...classes: ClassValue[]) {
 }`,
       },
     ]
-  },
+  }
 ];

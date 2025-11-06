@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import P from "./p";
 import Heading from "./heading";
+
 export default function Code({
   code,
   colors,
@@ -55,7 +56,7 @@ export default function Code({
                   "p-4 mx-2 pl-2 max-h-200 overflow-auto scrollbar-transparent "
                 )}
               >
-                {/* Title Bar */}
+
                 <div
                   style={{ backgroundColor: color.title }}
                   className="absolute top-0 left-0 w-full h-10 flex items-center justify-between gap-2 px-4"
@@ -83,7 +84,7 @@ export default function Code({
                   </p>
                 </div>
 
-                {/* Code Block */}
+
                 <code className={cn("[counter-reset:list] list-none")}>
                   <span
                     style={{ color: color.text }}
@@ -136,7 +137,7 @@ export default function Code({
                 "p-4 mx-2 pl-2 max-h-200 overflow-auto scrollbar-transparent "
               )}
             >
-              {/* Title Bar */}
+
               <div
                 style={{ backgroundColor: color.title }}
                 className="absolute top-0 left-0 w-full h-10 flex items-center justify-between gap-2 px-4"
@@ -164,7 +165,6 @@ export default function Code({
                 </p>
               </div>
 
-              {/* Code Block */}
               <code className={cn("[counter-reset:list] list-none")}>
                 <span
                   style={{ color: color.text }}
