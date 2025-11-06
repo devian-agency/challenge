@@ -6,8 +6,8 @@ import Link from "next/link";
 export default function Sidebar() {
   const size = useSize();
   return (
-    <aside className="md:w-96 w-full md:min-h-screen md:shadow-card border border-white">
-      <ul className="flex md:flex-col flex-row gap-4 justify-start md:min-h-screen px-4 py-4 overflow-x-auto scrollbar-none">
+    <aside className="md:w-96 w-full md:h-[calc(100vh-3rem)] overflow-y-auto md:shadow-card border border-white scrollbar-none">
+      <ul className="flex md:flex-col flex-row gap-4 justify-start md:h-[calc(100vh-3rem)] px-4 py-4 overflow-auto scrollbar-transparent">
         <p className="mt-4 text-icon px-4 text-center max-md:hidden border-b-2 border-border pb-4">Series</p>
         <Link href="/" className="flex">
           <Button

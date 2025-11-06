@@ -50,7 +50,7 @@ export default function RootLayout({
         <Navbar />
         <div className="flex flex-col md:flex-row justify-between items-start">
           <Sidebar />
-          <main className="w-full px-4 overflow-y-auto">
+          <main className="w-full px-4 h-[calc(100vh-3rem)] overflow-y-auto">
             <Suspense fallback={null}>{children}</Suspense>
           </main>
         </div>

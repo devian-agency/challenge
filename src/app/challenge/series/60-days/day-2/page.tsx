@@ -1,13 +1,32 @@
 "use client";
 import { useState } from "react";
+import CodePreview from "@/components/ui/code-preview";
+import Code from "@/components/ui/code";
+import { series, type Series, type Code as CodeType } from "@/contants/60day-series";
 
-export default function Day2() {
+
+export default function Day2Page(){
+  const [showCode, setShowCode] = useState(false);
+  return(
+    <section className=" py-4 relative">
+      <CodePreview showCode={showCode} setShowCode={setShowCode} />
+      <div className="flex flex-wrap gap-x-4 gap-y-8 w-full h-[calc(100vh-5rem)] justify-center items-center">
+        {showCode ?
+        <Code code={series.find((s: Series) => s.title === "Day 2")?.code as CodeType | CodeType[]} /> :
+        <Day2 />
+        }
+      </div>
+    </section>
+  )
+}
+
+function Day2() {
   const [isDark, setIsDark] = useState<boolean>(false)
   return (
-    <div className="flex flex-col items-center justify-center gap-6 min-h-screen bg-white transition-colors duration-500">
+    <div className="flex flex-col text-center gap-6 transition-colors duration-500">
       <h1 className="text-3xl font-bold">Toggle Theme</h1>
       <p className="font-bold text-2xl">Mode: <span className="font-caveat">{isDark ? "Dark" : "Light"}</span></p>
-      <div className="size-fit bg-icon p-2 rounded-full cursor-pointer"  onClick={() => setIsDark(!isDark)}>
+      <div className="size-fit mx-auto bg-icon p-2 rounded-full cursor-pointer"  onClick={() => setIsDark(!isDark)}>
         {
           isDark &&
           <SunToMoon duration={0.5} shadow="#b9b9b9" className="size-10"/>

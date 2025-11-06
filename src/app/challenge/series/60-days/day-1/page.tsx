@@ -9,19 +9,16 @@ import Code from "@/components/ui/code";
 import { type Code as CodeType, series, type Series } from "@/contants/60day-series";
 
 
-
-
 export default function Day1Page(){
-  const [showCode, setShowCode] = useState(true);
+  const [showCode, setShowCode] = useState(false);
   return(
-    <section className="w-full min-h-screen py-4 relative">
+    <section className="w-full py-4 relative">
       <CodePreview showCode={showCode} setShowCode={setShowCode} />
       <div className="flex flex-wrap gap-x-4 gap-y-8 w-full justify-center md:justify-start">
         {showCode ?
-        <Code key={1} code={series.find((s: Series) => s.title === "Day 1")?.code as CodeType[]} /> :
-        <Day1 key={2} />
+        <Code code={series.find((s: Series) => s.title === "Day 1")?.code as CodeType | CodeType[]} /> :
+        <Day1 />
         }
-
       </div>
     </section>
   )
@@ -29,7 +26,7 @@ export default function Day1Page(){
 
 const emailRegex =
   /^[A-Za-z0-9]+(?:\.[A-Za-z0-9]+)*@[A-Za-z0-9-]+\.[A-Za-z]{2,}$/;
-export function Day1() {
+function Day1() {
   const [contact, setContact] = useState({
     name: "",
     family_name: "",

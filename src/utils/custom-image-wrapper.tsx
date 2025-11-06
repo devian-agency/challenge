@@ -19,6 +19,7 @@ export default function ImageWrapper(props: ImageWrapperProps) {
       src={formatSrc(imgSrc as string, props.width as number) || imgSrc}
       width={props.width || 1080}
       height={props.height || 720}
+      
       loader={imgLoader}
       onError={() => setImgSrc("/assets/images/og-image.webp")}
     />

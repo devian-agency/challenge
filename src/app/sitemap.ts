@@ -1,10 +1,10 @@
 import { MetadataRoute } from 'next';
-import { series } from '@/contants/60day-series';
+import { series, type Series } from '@/contants/60day-series';
 
 const URL = 'https://challenge.devian.in';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const blogs = series.map((s) => ({
+  const blogs = series.map((s: Series) => ({
     url: `${URL + s.slug}`,
     lastModified: new Date(s.completedOn || s.challengedOn),
     changeFrequency: 'weekly' as const,
