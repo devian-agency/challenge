@@ -137,3 +137,9 @@ label:has(+ input[required], + textarea[required]):after {
 .animate-marquee > * {
   flex-shrink: 0;
 }
+
+.scrollbar-transparent{
+  scrollbar-color: var(--border) transparent;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}

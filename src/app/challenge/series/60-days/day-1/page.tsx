@@ -4,10 +4,32 @@ import { useState } from "react";
 import Button from "@/components/ui/button";
 import cn from "@/utils/ClassName";
 import axios from "axios";
+import CodePreview from "@/components/ui/code-preview";
+import Code from "@/components/ui/code";
+import { type Code as CodeType, series, type Series } from "@/contants/60day-series";
+
+
+
+
+export default function Day1Page(){
+  const [showCode, setShowCode] = useState(true);
+  return(
+    <section className="w-full min-h-screen py-4 relative">
+      <CodePreview showCode={showCode} setShowCode={setShowCode} />
+      <div className="flex flex-wrap gap-x-4 gap-y-8 w-full justify-center md:justify-start">
+        {showCode ?
+        <Code key={1} code={series.find((s: Series) => s.title === "Day 1")?.code as CodeType[]} /> :
+        <Day1 key={2} />
+        }
+
+      </div>
+    </section>
+  )
+}
 
 const emailRegex =
   /^[A-Za-z0-9]+(?:\.[A-Za-z0-9]+)*@[A-Za-z0-9-]+\.[A-Za-z]{2,}$/;
-export default function Home() {
+export function Day1() {
   const [contact, setContact] = useState({
     name: "",
     family_name: "",

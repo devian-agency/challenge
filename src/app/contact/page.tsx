@@ -245,7 +245,7 @@ export default function Home() {
   };
 
   return (
-    <section className="mt-12 w-full max-w-3xl lg:w-3/4 mx-auto">
+    <section className="mt-12 w-full max-w-3xl lg:w-3/4 mx-auto py-6">
       <div className="shadow-card border border-white p-6 rounded-xl font-instrument-sans text-foreground antialiased">
         <Heading className="mb-10" as="h1">
           {" "}

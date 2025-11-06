@@ -9,7 +9,7 @@ export default function Navigation(){
         <ImageWrapper src={"/logo/logo-transparent.png"} alt="Challenge's Logo" className="size-8" />
           <h1 className="font-instrument-sans font-medium text-2xl">Challenge</h1>
         </div>
-        <div className="w-1/2 h-full">
+        <div className="w-1/2 h-full hidden md:block">
           <input type="search" className="w-full h-full px-4 font-instrument-sans text-xl focus-within:outline-none " placeholder="Search your content here..." />
         </div>
         <div className="1/4">
@@ -19,6 +19,9 @@ export default function Navigation(){
         </ul>
         </div>
       </nav>
+      <div className="py-2 block md:hidden px-4">
+        <input type="search" className="w-full h-full px-4 font-instrument-sans text-xl focus-within:outline-none " placeholder="Search your content here..." />
+      </div>
     </header>
   )
 }
