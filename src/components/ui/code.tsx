@@ -4,8 +4,9 @@ import { Code as CodeIcon, File } from "lucide-react";
 import { type Code as CodeType } from "@/contants/60day-series";
 import codeCompiler, { Color } from "@/components/ui/code-compiler";
 import toast from "react-hot-toast";
-import { useState } from "react";
+import { use, useState } from "react";
 import P from "./p";
+import useSize from "@/hooks/use-size";
 import Heading from "./heading";
 
 export default function Code({
@@ -32,6 +33,7 @@ export default function Code({
   };
 
   const { color } = codeCompiler({});
+  const size = useSize();
 
   return (
     <section className="w-full mt-12">
@@ -70,9 +72,9 @@ export default function Code({
                   <p
                     style={{
                       color: color.path,
-                      display: new String(c?.showPath) == "false" ? "none" : "block",
+                      display: new String(c?.showPath) == "false" ? size < 768 ? "none" : "block" : "block",
                     }}
-                    className="text-lg hidden md:inline-block"
+                    className={cn("text-lg hidden md:inline-block")}
                   >
                     ../{c.path}
                   </p>
@@ -151,7 +153,7 @@ export default function Code({
                 <p
                   style={{
                     color: color.path,
-                    display: new String(code?.showPath) == "false" ? "none" : "block",
+                    display: new String(code?.showPath) == "false" ? size < 768 ? "none": "block" : "block",
                   }}
                   className="text-lg hidden md:inline-block"
                 >

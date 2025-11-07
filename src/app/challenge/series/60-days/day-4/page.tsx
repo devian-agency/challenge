@@ -1,14 +1,32 @@
 "use client";
 
 import cn from "@/utils/ClassName";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { ChevronLeft } from "lucide-react";
+import CodePreview from "@/components/ui/code-preview";
+import Code from "@/components/ui/code";
+import { series, type Series, type Code as CodeType } from "@/contants/60day-series";
 
 const color = "#0972DD";
 const cur = "#7E7E7E";
 const background = "#ddd";
 
-export default function DevPage() {
+export default function Day4Page(){
+  const [showCode, setShowCode] = useState(false);
+  return(
+    <section className=" py-4 relative">
+      <CodePreview showCode={showCode} setShowCode={setShowCode} />
+      <div className="flex flex-wrap gap-x-4 gap-y-8 w-full h-[calc(100vh-5rem)] justify-center items-center">
+        {showCode ?
+        <Code code={series.find((s: Series) => s.title === "Day 4")?.code as CodeType | CodeType[]} /> :
+        <Day3 />
+        }
+      </div>
+    </section>
+  )
+}
+
+export function Day3() {
   const ref = useRef<HTMLDivElement>(null);
   const button = useRef<HTMLHeadingElement>(null);
   const bg = useRef<HTMLSpanElement>(null);
