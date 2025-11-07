@@ -13,7 +13,6 @@ export default function Home(){
             <Card key={s.slug} series={s} />
           ))
         }
-
       </div>
     </section>
   )

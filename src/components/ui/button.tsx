@@ -4,7 +4,8 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   variant?: "dark" | "light" | "primary";
   type?: "submit" | "reset" | "button";
-  text: string;
+  text?: string;
+
 }
 
 export default function Button({
@@ -12,6 +13,7 @@ export default function Button({
   text,
   variant = "dark",
   type = "button",
+  children,
   ...rest
 }: Props) {
   const variants = {
@@ -34,10 +36,10 @@ export default function Button({
       >
         <span className="flex flex-col py-2 relative overflow-hidden">
           <span className="group-hover:-translate-y-2/1 transition-transform">
-            {text}
+            {text ? text : children}
           </span>
           <span className="absolute left-1/2 text-nowrap -translate-x-1/2 translate-y-2/1 group-hover: group-hover:translate-y-0 transition-transform">
-            {text}
+            {text ? text : children}
           </span>
         </span>
       </button>

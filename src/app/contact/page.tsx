@@ -2,8 +2,12 @@
 import Heading from "@/components/ui/heading";
 import { useState } from "react";
 import Button from "@/components/ui/button";
+import { Twitter } from "@/components/ui/twitter";
 import cn from "@/utils/ClassName";
+import { MessageCircle, MessageCircleCode } from "lucide-react";
 import axios from "axios";
+import Link from "next/link";
+
 
 const emailRegex =
   /^[A-Za-z0-9]+(?:\.[A-Za-z0-9]+)*@[A-Za-z0-9-]+\.[A-Za-z]{2,}$/;
@@ -214,7 +218,6 @@ export default function Home() {
             };
           });
         } else {
-          
           setError((prev) => {
             return {
               ...prev,
@@ -229,7 +232,7 @@ export default function Home() {
           ...prev,
           error: e.message,
         };
-      })
+      });
     } finally {
       setLoading(false);
       const timer = setTimeout(() => {
@@ -249,9 +252,18 @@ export default function Home() {
       <div className="shadow-card border border-white p-6 rounded-xl font-instrument-sans text-foreground antialiased">
         <Heading className="mb-10" as="h1">
           {" "}
-          Contact Form{" "}
+          Contact Me{" "}
         </Heading>
+        <div className="flex gap-4 flex-wrap justify-between items-center">
+          <Link href={"https://x.com/Averrraagggeeee"} rel="noopener noreferer" target="_blank">
+            <p className="flex items-center gap-2 text-card-text group"><Twitter className="" hold={3} size={20} /><span className="group-hover:underline underline-offset-2">@Averrraagggeeee</span></p>
+          </Link>
+          <Link href={"https://wa.me/+917024806451?text=Hello"} rel="noopener noreferrer" target="_blank">
+            <p className="flex items-center gap-2 text-card-text group"><MessageCircle className="rotate-y-180" size={20} /><span className="group-hover:underline underline-offset-2">+91 7024806451</span></p>
+          </Link>
+        </div>
         <form className="border-t-2 border-border py-12">
+          {/* Error Handling */}
           <div className="fixed top-6 right-0 z-50">
             <div className="relative w-96 h-40 flex flex-col items-center">
               {Object.keys(error).map((key, i) => {
@@ -259,12 +271,7 @@ export default function Home() {
                   <p
                     key={i}
                     className={cn(
-                      `
-                w-fit max-w-full text-balance text-background 
-                font-instrument-sans text-center rounded-lg font-medium px-3 py-1 shadow-lg
-                transition-all duration-300 cursor-pointer
-                mt-2 hidden
-              `,
+                      "w-fit max-w-full text-balance text-background font-instrument-sans text-center rounded-lg font-medium px-3 py-1 shadow-lg transition-all duration-300 cursor-pointer mt-2 hidden",
                       key === "success" ? "bg-green-500/80" : "bg-red-500/80",
                       error[key as keyof typeof error] && "block"
                     )}
@@ -275,6 +282,8 @@ export default function Home() {
               })}
             </div>
           </div>
+
+          {/* Form */}
           <fieldset>
             <div className="md:flex-row flex flex-col gap-6 flex-wrap">
               <div className="flex flex-1 flex-col gap-4">

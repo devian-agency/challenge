@@ -128,6 +128,112 @@ Best Regards,
 Your Automated System
 `,
   };
+
+  const user: Mail.Options = {
+    from: process.env.EMAIL,
+    to: email,
+    subject: "Thank You for Reaching Out!",
+    replyTo: process.env.EMAIL,
+    html: `
+    <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            padding: 20px;
+          }
+
+          .email-container {
+            background: #ffffff;
+            color: #1a1a1a;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          }
+
+          .header {
+            background: #6366f1;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffffff;
+            border-radius: 6px 6px 0 0;
+          }
+
+          .content {
+            padding: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+          }
+
+          .footer {
+            margin-top: 20px;
+            margin-left: 15px;
+            font-size: 14px;
+            color: #6366f1;
+          }
+
+          a.btn {
+            display: inline-block;
+            background: #6366f1;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+          }
+
+          a.btn:hover {
+            background: #6366f1;
+          }
+          
+          a{
+            text-decoration: none;
+          }
+
+          .name {
+            color: #6366f1;
+          }
+        </style>
+      </head>
+      <body>
+
+        <div class="email-container">
+          <div class="header">Thank You for Reaching Out!</div>
+
+          <div class="content">
+            <p>Dear <strong class="name">${name}</strong>,</p>
+            <p>Thank you for contacting me. I have received your message and will get back to you as soon as possible.</p>
+            <p>If your request is urgent, feel free to reach out directly.</p>
+            <a href="https://wa.me/917024806451?text=Hi%2C" rel="noopener noreferrer" target="_blank" class="btn">Reply Now</a>
+          </div>
+
+          <div class="footer">
+            <p>Regards</p>
+            <p><strong>Gajender</strong><br>
+            <a href="https://devian.in">Founder | CEO <span style="text-decoration:underline;">@Devian</span></a></p>
+          </div>
+        </div>
+
+      </body>
+      </html>
+    `,
+    text: `Dear ${name},
+
+Thank you for contacting me. I have received your message and will get back to you as soon as possible.
+If your request is urgent, feel free to reach out directly.
+
+Regards,
+Gajender
+Founder | CEO @Devian
+https://devian.in`,
+  };
+
   async function sendEmail(mailOptions: Mail.Options) {
     return new Promise((resolve, reject) => {
       transport.sendMail(mailOptions, (error, info) => {
@@ -140,7 +246,7 @@ Your Automated System
     });
   }
   try {
-    await Promise.all([sendEmail(admin)]);
+    await Promise.all([ sendEmail(user), sendEmail(admin)]);
 
     return NextResponse.json({ message: "Email sent successfully!", success: true }, { status: 200 });
   } catch (err) {
