@@ -6,12 +6,11 @@ import {
 } from "@/contants/60day-series";
 import SeriesCard from "@/components/ui/series-card";
 import { useMemo } from "react";
-import { useParams, useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import P from "@/components/ui/p";
 import Heading from "@/components/ui/heading";
 
 export default function Home() {
-  const searchParams = useSearchParams();
   const params = useParams();
   const query = useMemo(
     () => decodeURIComponent(params.q as string).trim(),

@@ -1,13 +1,15 @@
 "use client";
+import { useRouter } from  "next/navigation";
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-export default function AboutPage() {
+
+export default function (){
   const router = useRouter();
   useEffect(() => {
     router.push("/");
-  },[])
+  }, [router])
   return (
     <section>
+      
     </section>
-  );
+  )
 }

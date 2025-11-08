@@ -13,7 +13,7 @@ export default function Sidebar() {
           <Button
             variant={size <= 768 ? "light" : "dark"}
             text="60 Days Challenge"
-            className="md:mx-auto md:w-6/7 rounded-lg py-0 px-2"
+            className="md:mx-auto md:w-6/7 max-h-11 rounded-lg py-0 px-2 max-md:text-xs min-w-32"
           />
         </Link>
       </ul>
