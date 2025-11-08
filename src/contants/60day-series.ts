@@ -15,7 +15,7 @@ export interface Code {
 export interface Series {
   title: string;
   slug: string;
-  image?: string;
+  image: string;
   "sub-title": string;
   description: string;
   by: {
@@ -30,6 +30,7 @@ export interface Series {
 }
 
 export const series: Series[] = [
+  // Day 1
   {
     title: "Day 1",
     slug: url + "day-1",
@@ -713,6 +714,7 @@ PASSWORD = "Your Gmail App Password"`,
       }
     ]
   },
+  // Day 2
   {
     title: "Day 2",
     slug: url + "day-2",
@@ -1004,6 +1006,7 @@ function MoonToSun({className, shadow="white", duration = 1, ...props}:IconProps
 }`
     }
   },
+  // Day 3
   {
     title: "Day 3",
     slug: url + "day-3",
@@ -1451,6 +1454,7 @@ export default function cn(...classes: ClassValue[]) {
       },
     ]
   },
+  // Day 4
   {
     title: "Day 4",
     slug: url + "day-4",
@@ -1494,6 +1498,7 @@ export default function IOSPointer() {
     if (!c || !b || !bb) return;
 
     const rect = b.getBoundingClientRect();
+    document.body.style.cursor = "none";
     const x = e.clientX;
     const y = e.clientY;
 
@@ -1568,6 +1573,7 @@ export default function IOSPointer() {
 `
     }
   },
+  // Day 5
   {
     title: "Day 5",
     slug: url + "day-5",

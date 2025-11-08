@@ -1,66 +1,55 @@
-"use client"
-import Heading from "@/components/ui/heading";
-import Code from "@/components/ui/code";
-import { series, type Series, type Code as CodeType } from "@/contants/60day-series";
-import { useState } from "react";
-import CodePreview from "@/components/ui/code-preview";
+import Page from "./code";
+import type { Metadata } from "next";
+import { series, type Series } from "@/contants/60day-series";
 
-export default function Day3Page(){
-  const [showCode, setShowCode] = useState(false);
-  return(
-    <section className=" py-4 relative">
-      <CodePreview showCode={showCode} setShowCode={setShowCode} />
-      <div className="flex flex-wrap gap-x-4 gap-y-8 w-full h-[calc(100vh-5rem)] justify-center items-center">
-        {showCode ?
-        <Code code={series.find((s: Series) => s.title === "Day 3")?.code as CodeType | CodeType[]} /> :
-        <Day3 />
-        }
-      </div>
-    </section>
-  )
-}
+const s = series.find((s: Series) => s.title === "Day 3") as Series;
+const siteName = s["sub-title"] + " | Devian";
+const title = "Challenge | Devian";
+const description = s.description;
+const siteUrl = "https://challenge.devian.com" + s.slug;
+const siteImage = s.image;
 
-function Day3(){
-  return (
-    <section>
-      <Heading>Code Block</Heading>
-      <Code className="mx-auto" code={[
-        {
-        filename: "page.tsx",
-        path: "src/app/contact/page.tsx",
-        lang: "typescript",
-        code:`"use client";
+export const metadata: Metadata = {
+  title: siteName,
+  description,
 
-import cn from "@/utils/ClassName";
+  alternates: {
+    canonical: siteUrl,
+    languages: {
+      "en-US": siteUrl,
+    },
+  },
 
-import { Eye, Code } from "lucide-react";
+  openGraph: {
+    title,
+    description,
+    url: siteUrl,
+    siteName,
+    images: [
+      {
+        url: siteImage,
+        width: 1024,
+        height: 630,
+        alt: s["sub-title"],
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
 
-export default function CodePreview({showCode, setShowCode}: {showCode: boolean, setShowCode: (showCode: boolean) => void}) {
-  return (
-    <div className="md:absolute max-md:w-full top-4 right-4 flex gap-4 z-100">
-      <div onClick={() => setShowCode(false)} className={cn("max-md:flex-1 shadow-card cursor-pointer py-3 md:py-1 px-4 rounded-md transition-colors duration-300", !showCode && "bg-foreground text-background")}>
-        <p className="font-medium flex gap-2 items-center justify-center">
-          <span>
-            <Eye size={20} />
-          </span>
-          Preview
-        </p>
-      </div>
-      <div onClick={() => setShowCode(true)} className={cn("max-md:flex-1 shadow-card cursor-pointer py-3 md:py-1 px-4 rounded-md transition-colors duration-300", showCode && "bg-foreground text-background")}>
-        <p className="font-medium flex gap-2 items-center justify-center">
-          <span>
-            <Code size={20} />
-          </span>
-          Code
-        </p>
-      </div>
-    </div>
-  );
-}
-`
-      }
-      ]} />
-      
-    </section>
-  )
-}
+  twitter: {
+    card: "summary_large_image",
+    site: siteUrl,
+    creator: "@devian_twt",
+    title,
+    description,
+    images: [siteImage],
+  },
+
+  keywords: [
+    ...s["sub-title"].split(" ")
+  ],
+
+};
+
+export default Page
