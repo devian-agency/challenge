@@ -1030,20 +1030,13 @@ function MoonToSun({className, shadow="white", duration = 1, ...props}:IconProps
         code:`"use client";
 import cn from "@/utils/ClassName";
 import { Code as CodeIcon, File } from "lucide-react";
+import { type Code as CodeType } from "@/contants/60day-series";
 import codeCompiler, { Color } from "@/components/ui/code-compiler";
 import toast from "react-hot-toast";
-import { useState } from "react";
+import { use, useState } from "react";
 import P from "./p";
-
-interface CodeType {
-  filename: string;
-  path: string;
-  showPath?: boolean;
-  lang: string;
-  before?: string;
-  after?: string;
-  code: string;
-}
+import useSize from "@/hooks/use-size";
+import Heading from "./heading";
 
 export default function Code({
   code,
@@ -1069,14 +1062,16 @@ export default function Code({
   };
 
   const { color } = codeCompiler({});
+  const size = useSize();
 
   return (
     <section className="w-full mt-12">
       {Array.isArray(code) ? (
         code?.map((c, i) => (
           <div key={i} className="md:max-w-7xl mx-auto">
+            {c?.heading && <Heading className="max-w-7xl md:max-w-7xl xl:max-w-7xl text-left mt-10">{c.heading}</Heading>}
             {c?.before && (
-              <P className="md:max-w-7xl text-left mb-4 mt-10">{c.before}</P>
+              <P className={cn("md:max-w-7xl text-left mb-4 mt-10", c?.heading && "mt-2")}>{c.before}</P>
             )}
             <div
               style={{ backgroundColor: color.background, color: color.text }}
@@ -1089,10 +1084,10 @@ export default function Code({
             >
               <div
                 className={cn(
-                  "p-4 pl-2 mx-2 max-h-200 overflow-auto scrollbar-transparent "
+                  "p-4 mx-2 pl-2 max-h-200 overflow-auto scrollbar-transparent "
                 )}
               >
-                {/* Title Bar */}
+
                 <div
                   style={{ backgroundColor: color.title }}
                   className="absolute top-0 left-0 w-full h-10 flex items-center justify-between gap-2 px-4"
@@ -1106,9 +1101,8 @@ export default function Code({
                   <p
                     style={{
                       color: color.path,
-                      display: new String(c?.showPath) == "false" ? "none" : "block",
                     }}
-                    className="text-lg hidden md:inline-block"
+                    className={cn("text-lg hidden md:inline-block", !c.showPath && "hidden", size < 768 && "hidden")}
                   >
                     ../{c.path}
                   </p>
@@ -1120,7 +1114,7 @@ export default function Code({
                   </p>
                 </div>
 
-                {/* Code Block */}
+
                 <code className={cn("[counter-reset:list] list-none")}>
                   <span
                     style={{ color: color.text }}
@@ -1128,7 +1122,7 @@ export default function Code({
                   >
                     // {c.path}
                   </span>
-                  {c.code.split(/\\r?\\n/g).map((line, n) => (
+                  {c.code.split(/\r?\n/g).map((line, n) => (
                     <li key={n} className={cn("whitespace-pre")}>
                       <span className="[counter-increment:list] before:content-[counter(list)] relative before:mr-2 before:text-right before:inline-block opacity-50 mr-2"></span>
                       {codeCompiler({ text: n === 0 ? line.trim(): line, color: colors }).nodes}
@@ -1156,8 +1150,9 @@ export default function Code({
         ))
       ) : (
         <div className="">
+          {code?.heading && <Heading className="max-w-7xl md:max-w-7xl xl:max-w-7xl text-left mt-10">{code.heading}</Heading>}
           {code?.before && (
-            <P className="md:max-w-7xl text-left mb-4 mt-10">{code.before}</P>
+            <P className={cn("md:max-w-7xl text-left mb-4 mt-10", code?.heading && "mt-2")}>{code.before}</P>
           )}
           <div
             style={{ backgroundColor: color.background, color: color.text }}
@@ -1169,10 +1164,10 @@ export default function Code({
           >
             <div
               className={cn(
-                "p-4 pl-2 mx-2 max-h-200 overflow-auto scrollbar-transparent "
+                "p-4 mx-2 pl-2 max-h-200 overflow-auto scrollbar-transparent "
               )}
             >
-              {/* Title Bar */}
+
               <div
                 style={{ backgroundColor: color.title }}
                 className="absolute top-0 left-0 w-full h-10 flex items-center justify-between gap-2 px-4"
@@ -1185,10 +1180,9 @@ export default function Code({
                 </h3>
                 <p
                   style={{
-                    color: color.path,
-                    display: new String(code?.showPath) == "false" ? "none" : "block",
+                    color: color.path
                   }}
-                  className="text-lg hidden md:inline-block"
+                  className={cn("text-lg hidden md:inline-block", !code.showPath && "hidden", size < 768 && "hidden")}
                 >
                   ../{code.path}
                 </p>
@@ -1200,7 +1194,6 @@ export default function Code({
                 </p>
               </div>
 
-              {/* Code Block */}
               <code className={cn("[counter-reset:list] list-none")}>
                 <span
                   style={{ color: color.text }}
@@ -1208,7 +1201,7 @@ export default function Code({
                 >
                   // {code.path}
                 </span>
-                {code.code.split(/\\r?\\n/g).map((line, n) => (
+                {code.code.split(/\r?\n/g).map((line, n) => (
                   <li key={n} className={cn("whitespace-pre")}>
                     <span className="[counter-increment:list] before:content-[counter(list)] relative before:mr-2 before:text-right before:inline-block opacity-50 mr-2"></span>
                     {codeCompiler({ text: n === 0 ? line.trim(): line, color: colors }).nodes}
@@ -1236,7 +1229,8 @@ export default function Code({
       )}
     </section>
   );
-}`
+}
+`
       },
       {
         filename: "code-compiler.tsx",

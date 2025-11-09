@@ -72,9 +72,8 @@ export default function Code({
                   <p
                     style={{
                       color: color.path,
-                      display: new String(c?.showPath) == "false" ? size < 768 ? "none" : "block" : "block",
                     }}
-                    className={cn("text-lg hidden md:inline-block")}
+                    className={cn("text-lg hidden md:inline-block", !c.showPath && "hidden", size < 768 && "hidden")}
                   >
                     ../{c.path}
                   </p>
@@ -152,10 +151,9 @@ export default function Code({
                 </h3>
                 <p
                   style={{
-                    color: color.path,
-                    display: new String(code?.showPath) == "false" ? size < 768 ? "none": "block" : "block",
+                    color: color.path
                   }}
-                  className="text-lg hidden md:inline-block"
+                  className={cn("text-lg hidden md:inline-block", !code.showPath && "hidden", size < 768 && "hidden")}
                 >
                   ../{code.path}
                 </p>
