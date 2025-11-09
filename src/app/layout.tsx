@@ -27,10 +27,10 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Devian Agency",
-              url: "https://devian.in/",
-              image: "https://devian.in/assets/images/og-image2.webp",
-              jobTitle: "Full Stack Web/App Development Agency",
+              name: "Challenge | Devian",
+              url: "https://challenge.devian.in/",
+              image: "https://challenge.devian.in/images/og-image.png",
+              jobTitle: "Daily UI Challenges/Takss | Devian",
               worksFor: {
                 "@type": "Organization",
                 name: "Devian",
@@ -50,7 +50,7 @@ export default function RootLayout({
         <Navbar />
         <div className="flex flex-col md:flex-row justify-between items-start">
           <Sidebar />
-          <main className="w-full px-4 h-[calc(100vh-3rem)] overflow-y-auto">
+          <main className="w-full px-4 pb-4 h-[calc(100vh-3rem)] overflow-y-auto">
             <Suspense fallback={null}>{children}</Suspense>
           </main>
         </div>

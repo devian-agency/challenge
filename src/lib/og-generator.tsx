@@ -3,8 +3,10 @@
 import { useRef, useEffect } from "react";
 import cn from "@/utils/ClassName";
 import { toPng } from "html-to-image";
+import Button from "@/components/ui/button";
+import toast from "react-hot-toast";
 
-export default function OgGenerator({
+export default function ImageGenerator({
   children,
   filename = "image.png",
   onGenerated,
@@ -26,17 +28,14 @@ export default function OgGenerator({
         quality: 1,
         pixelRatio: 2,
       });
-
-      // optional: callback or download
       onGenerated?.(dataUrl);
 
-      // trigger download directly
       const link = document.createElement("a");
       link.download = filename;
       link.href = dataUrl;
       link.click();
     } catch (err) {
-      console.error("Error generating OG image:", err);
+      toast.error("Failed to generate image.");
     }
   };
 
@@ -55,7 +54,7 @@ export default function OgGenerator({
 
   return (
     <div className="flex flex-col w-full items-center gap-4">
-      {/* The actual UI you want to capture */}
+      
       <div
         ref={ref}
         className={cn("size-full p-10 rounded-3xl bg-background text-foreground", className)}
@@ -63,12 +62,11 @@ export default function OgGenerator({
         {children}
       </div>
 
-      <button
+      <Button
         onClick={handleGenerate}
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500"
-      >
-        Generate OG Image
-      </button>
+        className="rounded-md"
+        text="Generate Image"
+      />
     </div>
   );
 }

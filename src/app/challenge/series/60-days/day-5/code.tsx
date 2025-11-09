@@ -9,7 +9,7 @@ import {
   type Code as CodeType,
 } from "@/contants/60day-series";
 
-export default function Day2Page() {
+export default function Day5Page() {
   const [showCode, setShowCode] = useState(false);
   return (
     <section className=" py-4 relative">
@@ -24,14 +24,14 @@ export default function Day2Page() {
             }
           />
         ) : (
-          <Day2 />
+          <Day />
         )}
       </div>
     </section>
   );
 }
 
-function Day2() {
+function Day() {
   return (
     <div className="flex flex-col text-center gap-6 transition-colors duration-500">
 

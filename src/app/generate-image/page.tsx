@@ -1,10 +1,13 @@
-import OgGenerator from "@/lib/og-generator";
+import ImageGenerator from "@/lib/og-generator";
 // import { Day5 } from "../challenge/series/60-days/day-5/page";
+import NotFound from "../not-found";
 
 export default function GenerateImagePage() {
   return (
-    <OgGenerator className="w-fit p-20">
-      {/* <Day5 /> */}
-    </OgGenerator>
+    <ImageGenerator className="w-fit px-30 shadow-card">
+      <NotFound />
+      {/* <Day5 /> */}    
+      
+    </ImageGenerator>
   );
 }

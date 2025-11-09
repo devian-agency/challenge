@@ -1681,4 +1681,100 @@ export function Twitter({
 }`
     },
   },
+  // Day 5
+  {
+    title: "Day 6",
+    slug: url + "day-6",
+    image: imgurl + "day-6/image.png",
+    "sub-title": "Page to Image",
+    description:
+      "The Page to Image generator will generate an image from a given page. You can completely (There's no limit) customize the image as you want and download the image.",
+    by: {
+      name: "Gajender",
+      profile: imgurl + "day-6/profile.jpg",
+      github: "https://github.com/Gajendrasuman",
+      twitter: "https://x.com/Averrraagggeeee",
+    },
+    challengedOn: "08-11-2025",
+    completedOn: "09-11-2025",
+    code: {
+      filename: "page-to-image.tsx",
+      path: "src/components/ui/page-to-image.tsx",
+      after: " ",
+      lang: "Typescript",
+      code:`"use client";
+
+import { useRef, useEffect } from "react";
+import cn from "@/utils/ClassName";
+import { toPng } from "html-to-image";
+import Button from "@/components/ui/button";
+import toast from "react-hot-toast";
+
+export default function ImageGenerator({
+  children,
+  filename = "image.png",
+  onGenerated,
+  className
+}: {
+  children?: React.ReactNode;
+  filename?: string;
+  onGenerated?: (dataUrl: string) => void;
+  className?: string
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const handleGenerate = async () => {
+    if (!ref.current) return;
+
+    try {
+      const dataUrl = await toPng(ref.current, {
+        cacheBust: true,
+        quality: 1,
+        pixelRatio: 2,
+      });
+      onGenerated?.(dataUrl);
+
+      const link = document.createElement("a");
+      link.download = filename;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      toast.error("Failed to generate image.");
+    }
+  };
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleGenerate();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  return (
+    <div className="flex flex-col w-full items-center gap-4">
+      
+      <div
+        ref={ref}
+        className={cn("size-full p-10 rounded-3xl bg-background text-foreground", className)}
+      >
+        {children}
+      </div>
+
+      <Button
+        onClick={handleGenerate}
+        className="rounded-md"
+        text="Generate Image"
+      />
+    </div>
+  );
+}`
+    },
+  },
+  
 ];

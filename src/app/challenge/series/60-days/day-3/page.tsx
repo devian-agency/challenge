@@ -4,7 +4,7 @@ import { series, type Series } from "@/contants/60day-series";
 
 const s = series.find((s: Series) => s.title === "Day 3") as Series;
 const siteName = s["sub-title"] + " | Devian";
-const title = "Challenge | Devian";
+const title = s["sub-title"] + " | Devian";
 const description = s.description;
 const siteUrl = "https://challenge.devian.com" + s.slug;
 const siteImage = s.image;
