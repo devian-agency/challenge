@@ -2,7 +2,7 @@ import Page from "./code";
 import type { Metadata } from "next";
 import { series, type Series } from "@/contants/60day-series";
 
-const s = series.find((s: Series) => s.title === "Day 5") as Series;
+const s = series.find((s: Series) => s.title === "Day 6") as Series;
 const siteName = s["sub-title"] + " | Devian";
 const title = s["sub-title"] + " | Devian";
 const description = s.description;
