@@ -40,15 +40,15 @@ export default function DevPage() {
 
       <div className="flex gap-8 items-center justify-center">
         {/* Date group */}
-        <div className="flex gap-2">
+        {/* <div className="flex gap-2">
           <Scroller items={days} value={weekday} onChange={setWeekday} />
           <Scroller items={months} value={month} onChange={setMonth} />
           <Scroller items={Array.from({ length: 31 }, (_, i) => i + 1)} value={day} onChange={setDay} />
           <Scroller items={Array.from({ length: 12 }, (_, i) => 2020 + i)} value={year} onChange={setYear} />
-        </div>
+        </div> */}
 
         {/* Time group */}
-        <div className="flex gap-2">
+        {/* <div className="flex gap-2">
           <Scroller items={Array.from({ length: 12 }, (_, i) => i + 1)} value={hour % 12 || 12} onChange={setHour} />
           <Scroller
             items={Array.from({ length: 60 }, (_, i) => (i < 10 ? `0${i}` : i))}
@@ -56,7 +56,7 @@ export default function DevPage() {
             onChange={setMinute}
           />
           <Scroller items={["AM", "PM"]} infinite={false} value={ampm} onChange={setAmpm} />
-        </div>
+        </div> */}
       </div>
     </section>
   );
