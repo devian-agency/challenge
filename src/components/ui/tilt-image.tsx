@@ -1,5 +1,6 @@
+"use client";
 import cn from "@/utils/ClassName";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import ImageWrapper from "@/utils/custom-image-wrapper";
 
 interface TiltImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
@@ -7,33 +8,49 @@ interface TiltImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
 }
 
-export default function TiltImage({ src, className, ...props }: TiltImageProps) {
+export default function TiltImage({
+  src,
+  className,
+  ...props
+}: TiltImageProps) {
   const [angle, setAngle] = useState(10);
 
   const handleScroll = () => {
-    const scrollY = window.scrollY;
-    const a = angle - scrollY / 30 > 10 ? 10 : angle - scrollY / 30 < 0 ? 0 : Math.ceil(angle - scrollY / 30);
+    const scrollY = document.querySelector(".scroller")?.scrollTop || 0;
+    const a =
+      angle - scrollY / 30 > 10
+        ? 10
+        : angle - scrollY / 30 < 0
+        ? 0
+        : Math.ceil(angle - scrollY / 30);
     setAngle(a);
   };
 
   useEffect(() => {
-    document.addEventListener("scroll", handleScroll);
+    document
+      .querySelector(".scroller")
+      ?.addEventListener("scroll", handleScroll);
 
     return () => {
-      document.removeEventListener("scroll", handleScroll);
+      document
+        .querySelector(".scroller")
+        ?.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
+
   return (
     <div className="mt-14">
       <div className="perspective-distant perspective-origin-top">
-        <ImageWrapper src={src}
-        style={{ transform: `rotateX(${angle}deg)` }}
-
-         className={cn("origin-bottom rounded-2xl border border-white transform-3d transition-all duration-500 ease-linear shadow-soft", className)}
-         alt="Nexus Dashboard Image"
-         {...props as React.HTMLAttributes<HTMLImageElement>}
-         />
+        <ImageWrapper
+          src={src}
+          style={{ transform: `rotateX(${angle}deg)` }}
+          className={cn(
+            "origin-bottom rounded-2xl border border-white transform-3d transition-all duration-500 ease-linear shadow-soft",
+            className
+          )}
+          alt="Nexus Dashboard Image"
+          {...(props as React.HTMLAttributes<HTMLImageElement>)}
+        />
       </div>
     </div>
   );

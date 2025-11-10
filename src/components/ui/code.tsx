@@ -4,7 +4,7 @@ import { Code as CodeIcon, File } from "lucide-react";
 import { type Code as CodeType } from "@/contants/60day-series";
 import codeCompiler, { Color } from "@/components/ui/code-compiler";
 import toast from "react-hot-toast";
-import { use, useState } from "react";
+import { useState } from "react";
 import P from "./p";
 import useSize from "@/hooks/use-size";
 import Heading from "./heading";

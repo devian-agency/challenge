@@ -46,11 +46,11 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-background text-foreground font-instrument-sans">
+      <body className="bg-background text-foreground font-instrument-sans ">
         <Navbar />
         <div className="flex flex-col md:flex-row justify-between items-start">
           <Sidebar />
-          <main className="w-full px-4 pb-4 h-[calc(100vh-3rem)] overflow-y-auto">
+          <main className="w-full px-4 pb-4 h-[calc(100vh-3rem)] overflow-y-auto scroller">
             <Suspense fallback={null}>{children}</Suspense>
           </main>
         </div>

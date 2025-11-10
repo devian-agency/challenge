@@ -1675,7 +1675,7 @@ export function Twitter({
 }`
     },
   },
-  // Day 5
+  // Day 6
   {
     title: "Day 6",
     slug: url + "day-6",
@@ -1770,5 +1770,85 @@ export default function ImageGenerator({
 }`
     },
   },
-  
+  // Day 7
+  {
+    title: "Day 7",
+    slug: url + "day-7",
+    image: imgurl + "day-7/image.png",
+    "sub-title": "Tilt Image Card",
+    description:
+      "Build an animated tilt image card which have smooth transitions between image tilt and straightening. Just give an image link and it will do the magic.",
+    by: {
+      name: "Gajender",
+      profile: imgurl + "day-7/profile.jpg",
+      github: "https://github.com/Gajendrasuman",
+      twitter: "https://x.com/Averrraagggeeee",
+    },
+    challengedOn: "09-11-2025",
+    completedOn: "10-11-2025",
+    code: {
+      filename: "tiltimage.tsx",
+      path: "src/components/ui/tilt-image.tsx",
+      after: " ",
+      lang: "Typescript",
+      code:`"use client";
+import cn from "@/utils/ClassName";
+import { useState, useEffect } from "react";
+import ImageWrapper from "@/utils/custom-image-wrapper";
+
+interface TiltImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+  className?: string;
+  src: string;
+}
+
+export default function TiltImage({
+  src,
+  className,
+  ...props
+}: TiltImageProps) {
+  const [angle, setAngle] = useState(10);
+
+  const handleScroll = () => {
+    const scrollY = document.querySelector(".scroller")?.scrollTop || 0;
+    const a =
+      angle - scrollY / 30 > 10
+        ? 10
+        : angle - scrollY / 30 < 0
+        ? 0
+        : Math.ceil(angle - scrollY / 30);
+    setAngle(a);
+  };
+
+  useEffect(() => {
+    document
+      .querySelector(".scroller")
+      ?.addEventListener("scroll", handleScroll);
+
+    return () => {
+      document
+        .querySelector(".scroller")
+        ?.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <div className="mt-14">
+      <div className="perspective-distant perspective-origin-top">
+        <ImageWrapper
+          src={src}
+          style={{ transform: \`rotateX(\${angle}deg)\` }}
+          className={cn(
+            "origin-bottom rounded-2xl border border-white transform-3d transition-all duration-500 ease-linear shadow-soft",
+            className
+          )}
+          alt="Nexus Dashboard Image"
+          {...(props as React.HTMLAttributes<HTMLImageElement>)}
+        />
+      </div>
+    </div>
+  );
+}
+`
+    },
+  },
 ];
