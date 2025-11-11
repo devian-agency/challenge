@@ -1,3 +1,4 @@
+"use client";
 import type { LucideIcon } from "lucide-react";
 import cn from "@/utils/ClassName";
 import { Zap, UsersRound, CalendarCheck } from "lucide-react";
@@ -19,7 +20,7 @@ export default function ListScrolling() {
     <div>
       
       {/* Top Menu */}
-      <ul className="flex gap-4 w-fit mx-auto mt-8 p-3 border border-white shadow-soft rounded-xl">
+      <ul className="hidden md:flex gap-4 w-fit mx-auto mt-8 p-3 border border-white shadow-soft rounded-xl">
         <TopMenu onClick={() => setActive(0)} active={active === 0}>
           Nexus Focus
         </TopMenu>
@@ -32,11 +33,11 @@ export default function ListScrolling() {
       </ul>
 
       {/* Content */}
-      <div className="flex border border-white shadow-soft rounded-2xl p-2 mt-12">
+      <div className="flex flex-col md:flex-row gap-4 w-fit mx-auto border border-white shadow-soft rounded-2xl p-2 mt-12">
 
         {/* Bottom Menu */}
-        <div className="w-1/2 h-full pr-4">
-          <ul className="flex md:flex-col gap-4">
+        <div className="md:w-1/2 h-full pr-4">
+          <ul className="flex flex-col gap-4">
             <MenuCard
               onClick={() => setActive(0)}
               active={active === 0}
@@ -61,28 +62,28 @@ export default function ListScrolling() {
           </ul>
         </div>
 
-        <div className="w-1/2 h-128 overflow-hidden relative border border-white shadow-soft rounded-xl">
+        <div className="md:w-1/2 h-128 overflow-hidden relative border border-white shadow-soft rounded-xl">
           <div
             className="transition-transform duration-700 ease-in-out h-full"
             style={{ transform: `translateY(-${active * 100}%)` }}
           >
             <div className="h-full flex items-center justify-center">
               <img
-                src="/images/inside-section/image1.avif"
+                src="/images/challenge/series/60-days/day-8/image1.avif"
                 className="w-4/5 object-contain rounded-lg"
                 alt="AI Assistance"
               />
             </div>
             <div className="h-full flex items-center justify-center">
               <img
-                src="/images/inside-section/image2.avif"
+                src="/images/challenge/series/60-days/day-8/image2.avif"
                 className="w-4/5 object-contain rounded-lg"
                 alt="Team Hub"
               />
             </div>
             <div className="h-full flex items-center justify-center">
               <img
-                src="/images/inside-section/image3.avif"
+                src="/images/challenge/series/60-days/day-8/image3.avif"
                 className="w-4/5 object-contain rounded-lg"
                 alt="Track Progress"
               />
@@ -131,7 +132,7 @@ function TopMenu({ children, active, ...props }: TopMenuProps) {
     <li
       {...props}
       className={cn(
-        "px-3 cursor-pointer py-1 text-base font-instrument-sans border border-transparent rounded-lg transition-all duration-700",
+        "px-3 cursor-pointer whitespace-nowrap py-1 text-base font-instrument-sans border border-transparent rounded-lg transition-all duration-700",
         active && "shadow-soft border-white font-medium"
       )}
     >

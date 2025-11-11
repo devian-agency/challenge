@@ -271,7 +271,9 @@ export function Day1() {
           Contact Form{" "}
         </Heading>
         <form className="border-t-2 border-border py-12">
-          <div className="fixed top-6 right-0 z-50">
+          <div className={cn("fixed top-6 right-0 -z-50", ( error.error || error.success|| error.email
+          || error.subject || error.message || error.name || error.family_name
+          ) && "z-50")}>
             <div className="relative w-96 h-40 flex flex-col items-center">
               {Object.keys(error).map((key, i) => {
                 return (

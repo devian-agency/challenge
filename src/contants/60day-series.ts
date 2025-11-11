@@ -61,7 +61,7 @@ import axios from "axios";
 
 const emailRegex = /^[A-Za-z0-9]+(?:\.[A-Za-z0-9]+)*@[A-Za-z0-9-]+\.[A-Za-z]{2,}$/;
 
-export function Day1() {
+export default function Contact() {
   const [contact, setContact] = useState({
     name: "",
     family_name: "",
@@ -299,26 +299,22 @@ export function Day1() {
   };
 
   return (
-    <section className="mt-12 w-full max-w-3xl lg:w-3/4 mx-auto">
+    <section className="mt-12 w-full bg-background text-foreground max-w-3xl lg:w-3/4 mx-auto">
       <div className="shadow-card border border-white p-6 rounded-xl font-instrument-sans text-foreground antialiased">
         <Heading className="mb-10" as="h1">
           {" "}
           Contact Form{" "}
         </Heading>
         <form className="border-t-2 border-border py-12">
-          <div className="fixed top-6 right-0 z-50">
+          <div className={cn("fixed top-6 right-0 -z-50", ( error.error || error.success|| error.email
+          || error.subject || error.message || error.name || error.family_name
+          ) && "z-50")}>
             <div className="relative w-96 h-40 flex flex-col items-center">
               {Object.keys(error).map((key, i) => {
                 return (
                   <p
                     key={i}
-                    className={cn(
-                      \`
-                w-fit max-w-full text-balance text-background 
-                font-instrument-sans text-center rounded-lg font-medium px-3 py-1 shadow-lg
-                transition-all duration-300 cursor-pointer
-                mt-2 hidden
-              \`,
+                    className={cn("w-fit max-w-full text-balance text-background font-instrument-sans text-center rounded-lg font-medium px-3 py-1 shadow-lg transition-all duration-300 cursor-pointer mt-2 hidden",
                       key === "success" ? "bg-green-500/80" : "bg-red-500/80",
                       error[key as keyof typeof error] && "block"
                     )}
@@ -456,71 +452,7 @@ export function Day1() {
     </section>
   );
 }
-
 `,
-      },
-      {
-        filename: "ClassName.ts",
-        path: "src/utils/ClassName.ts",
-        lang: "typescript",
-        before: "The cn function is used to merge tailwind class string. In this function we take tailwind classes as an array and using tailwind-merge package we compare and merge similar classes. Classes which are written later will override classes which are written earlier.",
-        code:`import clsx, { ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export default function cn(...classes: ClassValue[]) {
-  return twMerge(clsx(...classes));
-}`,
-      },
-      {
-        filename: "Button.tsx",
-        path: "src/components/ui/Button.tsx",
-        lang: "typescript",
-        before: "",
-        code:`import cn from "@/utils/ClassName";
-
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  className?: string;
-  variant?: "dark" | "light" | "primary";
-  type?: "submit" | "reset" | "button";
-  text: string;
-}
-
-export default function Button({
-  className,
-  text,
-  variant = "dark",
-  type = "button",
-  ...rest
-}: Props) {
-  const variants = {
-    dark: "bg-button text-background shadow-button-dark hover:bg-primary hover:shadow-button-primary",
-    light:
-      "bg-background text-foreground hover:text-primary shadow-button-light border border-white",
-    primary: "bg-primary text-white shadow-button-primary",
-  };
-
-  return (
-      <button
-        className={cn(
-          "font-instrument-sans font-medium relative bg-button text-background py-1.5 px-6 rounded-2xl w-fit h-fit overflow-hidden transition-colors cursor-pointer",
-          "group",
-          variants[variant],
-          className
-        )}
-        type={type}
-        {...rest}
-      >
-        <span className="flex flex-col py-2 relative overflow-hidden">
-          <span className="group-hover:-translate-y-2/1 transition-transform">
-            {text}
-          </span>
-          <span className="absolute left-1/2 text-nowrap -translate-x-1/2 translate-y-2/1 group-hover: group-hover:translate-y-0 transition-transform">
-            {text}
-          </span>
-        </span>
-      </button>
-  );
-}`,
       },
       {
         filename: "Heading.tsx",
@@ -1849,6 +1781,171 @@ export default function TiltImage({
   );
 }
 `
+    },
+  },
+  // Day 8
+  {
+    title: "Day 8",
+    slug: url + "day-8",
+    image: imgurl + "day-8/image.png",
+    "sub-title": "Scrolling List",
+    description:
+      "The Scrolling List component displays a list of items that automatically scrolls through its content. It features a top menu for quick navigation and a bottom menu that provides additional information about each item. The scrolling effect is smooth and visually appealing, enhancing the user experience.",
+    by: {
+      name: "Gajender",
+      profile: imgurl + "day-8/profile.jpg",
+      github: "https://github.com/Gajendrasuman",
+      twitter: "https://x.com/Averrraagggeeee",
+    },
+    challengedOn: "09-11-2025",
+    completedOn: "10-11-2025",
+    code: {
+      filename: "scrolling-list.tsx",
+      path: "src/components/ui/scrolling-list.tsx",
+      after: " ",
+      lang: "Typescript",
+      code:`"use client";
+import type { LucideIcon } from "lucide-react";
+import cn from "@/utils/ClassName";
+import { Zap, UsersRound, CalendarCheck } from "lucide-react";
+import { useEffect, useState } from "react";
+
+export default function ListScrolling() {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prevActive) => (prevActive + 1) % 3);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  
+  }, []);
+  
+  return (
+    <div>
+      
+      {/* Top Menu */}
+      <ul className="hidden md:flex gap-4 w-fit mx-auto mt-8 p-3 border border-white shadow-soft rounded-xl">
+        <TopMenu onClick={() => setActive(0)} active={active === 0}>
+          Nexus Focus
+        </TopMenu>
+        <TopMenu onClick={() => setActive(1)} active={active === 1}>
+          Collaboration
+        </TopMenu>
+        <TopMenu onClick={() => setActive(2)} active={active === 2}>
+          Task Flow
+        </TopMenu>
+      </ul>
+
+      {/* Content */}
+      <div className="flex flex-col md:flex-row gap-4 w-fit mx-auto border border-white shadow-soft rounded-2xl p-2 mt-12">
+
+        {/* Bottom Menu */}
+        <div className="md:w-1/2 h-full pr-4">
+          <ul className="flex flex-col gap-4">
+            <MenuCard
+              onClick={() => setActive(0)}
+              active={active === 0}
+              icon={Zap}
+              h="AI Assistance"
+              p="Automate tasks and get instant smart suggestions."
+            />
+            <MenuCard
+              onClick={() => setActive(1)}
+              active={active === 1}
+              icon={UsersRound}
+              h="Team Hub"
+              p="Assign tasks and share updates in one simple view."
+            />
+            <MenuCard
+              onClick={() => setActive(2)}
+              active={active === 2}
+              icon={CalendarCheck}
+              h="Track Progress"
+              p="See how every action moves you forward."
+            />
+          </ul>
+        </div>
+
+        <div className="md:w-1/2 h-128 overflow-hidden relative border border-white shadow-soft rounded-xl">
+          <div
+            className="transition-transform duration-700 ease-in-out h-full"
+            style={{ transform: \`translateY(-\${active * 100}%)\` }}
+          >
+            <div className="h-full flex items-center justify-center">
+              <img
+                src="/images/challenge/series/60-days/day-8/image1.avif"
+                className="w-4/5 object-contain rounded-lg"
+                alt="AI Assistance"
+              />
+            </div>
+            <div className="h-full flex items-center justify-center">
+              <img
+                src="/images/challenge/series/60-days/day-8/image2.avif"
+                className="w-4/5 object-contain rounded-lg"
+                alt="Team Hub"
+              />
+            </div>
+            <div className="h-full flex items-center justify-center">
+              <img
+                src="/images/challenge/series/60-days/day-8/image3.avif"
+                className="w-4/5 object-contain rounded-lg"
+                alt="Track Progress"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+interface MenuCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  icon: LucideIcon;
+  h: string;
+  p: string;
+  active?: boolean;
+}
+function MenuCard({ icon, h, p, active, ...props }: MenuCardProps) {
+  const Icon = icon as LucideIcon;
+  return (
+    <div
+      className={cn(
+        "w-full cursor-pointer p-6 rounded-xl flex flex-col gap-3 border border-transparent transition-all duration-700",
+        active && "shadow-soft border-white"
+      )}
+      {...props}
+    >
+      <span>
+        <Icon className="text-foreground" size={35} />
+      </span>
+      <h3 className="text-foreground font-instrument-sans font-medium text-xl">
+        {h}
+      </h3>
+      <p className="text-foreground font-inter text-">{p}</p>
+    </div>
+  );
+}
+
+interface TopMenuProps extends React.HTMLAttributes<HTMLLIElement> {
+  children: React.ReactNode;
+  active?: boolean;
+}
+
+function TopMenu({ children, active, ...props }: TopMenuProps) {
+  return (
+    <li
+      {...props}
+      className={cn(
+        "px-3 cursor-pointer whitespace-nowrap py-1 text-base font-instrument-sans border border-transparent rounded-lg transition-all duration-700",
+        active && "shadow-soft border-white font-medium"
+      )}
+    >
+      {children}
+    </li>
+  );
+}`
     },
   },
 ];
