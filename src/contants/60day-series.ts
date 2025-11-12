@@ -1797,8 +1797,8 @@ export default function TiltImage({
       github: "https://github.com/Gajendrasuman",
       twitter: "https://x.com/Averrraagggeeee",
     },
-    challengedOn: "09-11-2025",
-    completedOn: "10-11-2025",
+    challengedOn: "10-11-2025",
+    completedOn: "11-11-2025",
     code: {
       filename: "scrolling-list.tsx",
       path: "src/components/ui/scrolling-list.tsx",
@@ -1944,6 +1944,93 @@ function TopMenu({ children, active, ...props }: TopMenuProps) {
     >
       {children}
     </li>
+  );
+}`
+    },
+  },
+  // Day 9
+  {
+    title: "Day 9",
+    slug: url + "day-9",
+    image: imgurl + "day-9/image.png",
+    "sub-title": "Image Card",
+    description:
+      "The Image Card is a simple image card with a title and description.",
+    by: {
+      name: "Gajender",
+      profile: imgurl + "day-9/profile.jpg",
+      github: "https://github.com/Gajendrasuman",
+      twitter: "https://x.com/Averrraagggeeee",
+    },
+    challengedOn: "11-11-2025",
+    completedOn: "12-11-2025",
+    code: {
+      filename: "image-card.tsx",
+      path: "src/components/ui/image-card.tsx",
+      after: " ",
+      lang: "Typescript",
+      code:`import cn from "@/utils/ClassName";
+import Image from "next/image";
+
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string;
+  image?: string;
+  imgClass?: string;
+  heading?: string;
+}
+
+function loader({
+  src,
+  width,
+  quality,
+}: {
+  src: string;
+  width: number;
+  quality?: number;
+}) {
+  return \`\${src}?w=\${width}&q=\${quality || 75}\`;
+}
+
+export default function Card({
+  className,
+  image,
+  imgClass,
+  heading,
+  children,
+  ...rest
+}: Props) {
+  return (
+    <div
+      className={cn(
+        "flex-1 min-w-80 border border-white shadow-card rounded-3xl p-6",
+        className
+      )}
+      {...rest}
+    >
+      <div className="flex h-full flex-col justify-between">
+        <div className="flex items-center justify-center size-full mx-auto">
+          <Image
+            src={image || ""}
+            width={400}
+            height={400}
+            className={cn(
+              "object-contain w-3/4 h-full mx-auto mix-blend-darken",
+              imgClass
+            )}
+            alt={heading || ""}
+            loader={loader}
+          />
+        </div>
+        <div className="">
+          <h3 className="font-instrument-sans text-3xl mt-10 font-semibold text-left">
+            {heading}
+          </h3>
+          <p className="font-inter sm:text-lg text-base text-card-text mx-auto text-balance mt-2">
+            {children}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }`
     },

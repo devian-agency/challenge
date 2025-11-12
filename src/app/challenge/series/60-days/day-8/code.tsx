@@ -3,7 +3,6 @@ import { useState } from "react";
 import CodePreview from "@/components/ui/code-preview";
 import Code from "@/components/ui/code";
 import { series, type Series, type Code as CodeType } from "@/contants/60day-series";
-import TiltImage from "@/components/ui/tilt-image";
 import ListScrolling from "@/components/ui/list-scrolling";
 
 export default function Day5Page() {

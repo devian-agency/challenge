@@ -1,10 +1,10 @@
 import ImageGenerator from "@/lib/og-generator";
-import ListScrolling from "@/components/ui/list-scrolling";
+import DevPage from "../dev/page";
 
 export default function GenerateImagePage() {
   return (
     <ImageGenerator className="w-fit">
-      <ListScrolling />
+      <DevPage />
     </ImageGenerator>
   );
 }
