@@ -6,7 +6,7 @@ export interface Code {
   path: string;
   showPath?: boolean;
   lang: string;
-  heading?:string;
+  heading?: string;
   before?: string;
   after?: string;
   code: string;
@@ -46,13 +46,14 @@ export const series: Series[] = [
     },
     challengedOn: "30-10-2025",
     completedOn: "01-11-2025",
-    code:[
+    code: [
       {
         filename: "page.tsx",
         path: "src/app/contact/page.tsx",
         lang: "typescript",
-        before: "This program contains main visual page and contact form. It also contains error handling and message logs. The main logic of whole contact form is written in this file from form visualization to form submission.",
-        code:`"use client";
+        before:
+          "This program contains main visual page and contact form. It also contains error handling and message logs. The main logic of whole contact form is written in this file from form visualization to form submission.",
+        code: `"use client";
 import Heading from "@/components/ui/heading";
 import { useState } from "react";
 import Button from "@/components/ui/button";
@@ -458,7 +459,7 @@ export default function Contact() {
         filename: "Heading.tsx",
         path: "src/components/ui/Heading.tsx",
         lang: "typescript",
-        code:`import cn from "@/utils/ClassName";
+        code: `import cn from "@/utils/ClassName";
 interface Props extends React.HTMLAttributes<HTMLHeadingElement> {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   className?: string;
@@ -484,8 +485,10 @@ export default function Heading({ as, className, children, ...props }: Props) {
         filename: "route.ts",
         path: "src/app/api/contact/route.ts",
         lang: "Node",
-        before: "This is the backend logic of contact form. This file is responsible for sending email to the admin. It uses nodemailer package to send email using gmail service. It also handles errors and returns appropriate response to the frontend.",
-        code:`import { type NextRequest, NextResponse } from "next/server";
+        before:
+          "This is the backend logic of contact form. This file is responsible for sending email to the admin. It uses nodemailer package to send email using gmail service. It also handles errors and returns appropriate response to the frontend.",
+        code:
+          `import { type NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
 
@@ -581,10 +584,16 @@ export async function POST(request: NextRequest) {
 
           <div class="content">
             <p><strong>Name:</strong> \${name} \${family_name ? \` \${family_name}\` : ""}</p>
-            <p><strong>Email:</strong> `+"${email}"+`</p>
-            <p><strong>Purpose:</strong> `+"${subject}"+`</p>
+            <p><strong>Email:</strong> ` +
+          "${email}" +
+          `</p>
+            <p><strong>Purpose:</strong> ` +
+          "${subject}" +
+          `</p>
             <p><strong>Message:</strong></p>
-            <blockquote>`+"${message}"+`</blockquote>
+            <blockquote>` +
+          "${message}" +
+          `</blockquote>
 
             <p><strong>Please review and respond if needed.</strong></p>
           </div>
@@ -633,18 +642,19 @@ Your Automated System
   } catch (err) {
     return NextResponse.json({ error: err, success: false }, { status: 500 });
   }
-}`
+}`,
       },
       {
         filename: ".env",
         path: ".env",
         lang: "Variables",
-        before: ".env file contains email and password for sending email to admin. It is used in route.ts file for sending email to admin.",
+        before:
+          ".env file contains email and password for sending email to admin. It is used in route.ts file for sending email to admin.",
         after: " ",
-        code:`EMAIL = "devian.agency@gmail.com"
+        code: `EMAIL = "devian.agency@gmail.com"
 PASSWORD = "Your Gmail App Password"`,
-      }
-    ]
+      },
+    ],
   },
   // Day 2
   {
@@ -662,12 +672,12 @@ PASSWORD = "Your Gmail App Password"`,
     },
     challengedOn: "02-11-2025",
     completedOn: "04-11-2025",
-    code:{
+    code: {
       filename: "page.tsx",
       path: "src/components/ui/ThemeSwitcher.tsx",
       after: " ",
       lang: "Typescript",
-      code:`"use client";
+      code: `"use client";
 import { useState } from "react";
 export function Day2() {
   const [isDark, setIsDark] = useState<boolean>(false)
@@ -935,8 +945,8 @@ function MoonToSun({className, shadow="white", duration = 1, ...props}:IconProps
         </g>
       </svg>
   )
-}`
-    }
+}`,
+    },
   },
   // Day 3
   {
@@ -954,12 +964,12 @@ function MoonToSun({className, shadow="white", duration = 1, ...props}:IconProps
     },
     challengedOn: "05-11-2025",
     completedOn: "06-11-2025",
-    code:[
+    code: [
       {
         filename: "CodeBlock.tsx",
         path: "src/components/ui/CodeBlock.tsx",
         lang: "Typescript",
-        code:`"use client";
+        code: `"use client";
 import cn from "@/utils/ClassName";
 import { Code as CodeIcon, File } from "lucide-react";
 import { type Code as CodeType } from "@/contants/60day-series";
@@ -1162,13 +1172,14 @@ export default function Code({
     </section>
   );
 }
-`
+`,
       },
       {
         filename: "code-compiler.tsx",
         path: "src/components/ui/code-compiler.tsx",
         lang: "Typescript",
-        code: `export interface Color {
+        code:
+          `export interface Color {
   background: string;
   title: string;
   path: string;
@@ -1262,7 +1273,9 @@ const codeCompiler = ({
       if (gCommentSingle) {
         push(gCommentSingle, color.comment);
       } else if (gCommentMulti) {
-        push(\`/*`+"${gCommentMulti}"+`*/\`, color.comment);
+        push(\`/*` +
+          "${gCommentMulti}" +
+          `*/\`, color.comment);
       } else if (gTagOpen) {
         push("<", color.tagBracket);
         if (gTagOpen.startsWith("</")) push("/", color.tagBracket);
@@ -1329,7 +1342,7 @@ export default codeCompiler;
         filename: "P.tsx",
         path: "src/components/ui/P.tsx",
         lang: "Typescript",
-        code:`import cn from "@/utils/ClassName"
+        code: `import cn from "@/utils/ClassName"
 
 interface Props extends React.HTMLAttributes<HTMLParagraphElement>{
   className?: string
@@ -1362,23 +1375,24 @@ export default function P({
   {children}
 </p>
   )
-}`
+}`,
       },
       {
         filename: "ClassName.ts",
         path: "src/utils/ClassName.ts",
         lang: "typescript",
         heading: "CN Function",
-        before: "The cn function is used to merge tailwind class string. In this function we take tailwind classes as an array and using tailwind-merge package we compare and merge similar classes. Classes which are written later will override classes which are written earlier.",
+        before:
+          "The cn function is used to merge tailwind class string. In this function we take tailwind classes as an array and using tailwind-merge package we compare and merge similar classes. Classes which are written later will override classes which are written earlier.",
         after: " ",
-        code:`import clsx, { ClassValue } from "clsx";
+        code: `import clsx, { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 export default function cn(...classes: ClassValue[]) {
   return twMerge(clsx(...classes));
 }`,
       },
-    ]
+    ],
   },
   // Day 4
   {
@@ -1396,12 +1410,12 @@ export default function cn(...classes: ClassValue[]) {
     },
     challengedOn: "07-11-2025",
     completedOn: "07-11-2025",
-    code:{
+    code: {
       filename: "ios-pointer.tsx",
       path: "src/components/ui/ios-pointer.tsx",
       after: " ",
       lang: "Typescript",
-      code:`"use client";
+      code: `"use client";
 
 import cn from "@/utils/ClassName";
 import { useRef, useEffect } from "react";
@@ -1496,8 +1510,8 @@ export default function IOSPointer() {
     </section>
   );
 }
-`
-    }
+`,
+    },
   },
   // Day 5
   {
@@ -1520,7 +1534,7 @@ export default function IOSPointer() {
       path: "src/components/ui/icons/twitter.tsx",
       after: " ",
       lang: "Typescript",
-      code:`"use client"
+      code: `"use client"
 import { useEffect, useRef } from "react";
 import { interpolate } from "flubber";
 
@@ -1604,7 +1618,7 @@ export function Twitter({
       <path ref={pathRef} fill="currentColor" d={twitter} />
     </svg>
   );
-}`
+}`,
     },
   },
   // Day 6
@@ -1628,7 +1642,7 @@ export function Twitter({
       path: "src/components/ui/page-to-image.tsx",
       after: " ",
       lang: "Typescript",
-      code:`"use client";
+      code: `"use client";
 
 import { useRef, useEffect } from "react";
 import cn from "@/utils/ClassName";
@@ -1699,7 +1713,7 @@ export default function ImageGenerator({
       />
     </div>
   );
-}`
+}`,
     },
   },
   // Day 7
@@ -1723,7 +1737,7 @@ export default function ImageGenerator({
       path: "src/components/ui/tilt-image.tsx",
       after: " ",
       lang: "Typescript",
-      code:`"use client";
+      code: `"use client";
 import cn from "@/utils/ClassName";
 import { useState, useEffect } from "react";
 import ImageWrapper from "@/utils/custom-image-wrapper";
@@ -1780,7 +1794,7 @@ export default function TiltImage({
     </div>
   );
 }
-`
+`,
     },
   },
   // Day 8
@@ -1804,7 +1818,7 @@ export default function TiltImage({
       path: "src/components/ui/scrolling-list.tsx",
       after: " ",
       lang: "Typescript",
-      code:`"use client";
+      code: `"use client";
 import type { LucideIcon } from "lucide-react";
 import cn from "@/utils/ClassName";
 import { Zap, UsersRound, CalendarCheck } from "lucide-react";
@@ -1945,7 +1959,7 @@ function TopMenu({ children, active, ...props }: TopMenuProps) {
       {children}
     </li>
   );
-}`
+}`,
     },
   },
   // Day 9
@@ -1969,7 +1983,7 @@ function TopMenu({ children, active, ...props }: TopMenuProps) {
       path: "src/components/ui/image-card.tsx",
       after: " ",
       lang: "Typescript",
-      code:`import cn from "@/utils/ClassName";
+      code: `import cn from "@/utils/ClassName";
 import Image from "next/image";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
@@ -2032,7 +2046,302 @@ export default function Card({
       </div>
     </div>
   );
-}`
+}`,
     },
   },
+  // Day 10
+  {
+    title: "Day 10",
+    slug: url + "day-10",
+    image: imgurl + "day-10/image.png",
+    "sub-title": "Notifications",
+    description:
+      "In Notifications component, you can add as many notifications as you want. You can also add different types of notifications like normal, with button, with image, with button and image both, this feature will be useful for your website.",
+    by: {
+      name: "Gajender",
+      profile: imgurl + "day-10/profile.jpg",
+      github: "https://github.com/Gajendrasuman",
+      twitter: "https://x.com/Averrraagggeeee",
+    },
+    challengedOn: "12-11-2025",
+    completedOn: "13-11-2025",
+    code: [
+      {
+        filename: "notifications.tsx",
+        path: "src/components/ui/notifications.tsx",
+        before: "The notifications component is a simple notification component with different types of notifications.",
+        heading: "Notifications",
+        lang: "Typescript",
+        code: `"use client";
+import { BellOff, EllipsisVertical, CheckCheck, Settings } from "lucide-react";
+import cn from "@/utils/ClassName";
+import { useState, useEffect } from "react";
+
+interface Text {
+  id: string;
+  type: "text";
+  title: string;
+  message: string;
+  read: boolean;
+  date: string;
+}
+
+interface Image {
+  id: string;
+  type: "image";
+  title: string;
+  message: string;
+  image: string;
+  link?: string;
+  read: boolean;
+  date: string;
+}
+
+interface ButtonImage {
+  id: string;
+  type: "button_image";
+  title: string;
+  message: string;
+  image: string;
+  button: string;
+  link: string;
+  read: boolean;
+  date: string;
+}
+
+interface Button {
+  id: string;
+  type: "button";
+  title: string;
+  message: string;
+  button: string;
+  link: string;
+  read: boolean;
+  date: string;
+}
+
+export type Notification = Text | Image | ButtonImage | Button;
+
+const notifications: Notification[] = [
+  {
+    id: "1",
+    type: "text",
+    title: "Welcome!",
+    message: "Welcome to Devian.",
+    read: false,
+    date: new Date().toLocaleString(),
+  },
+  {
+    id: "2",
+    type: "button",
+    title: "You've got a new message",
+    message: "Click the button below to view it.",
+    button: "View Notification",
+    link: "#",
+    read: true,
+    date: new Date().toLocaleString(),
+  },
+  {
+    id: "3",
+    type: "image",
+    title: "Diwali: Discount Available",
+    message: "Get 50% off on all products. Limited time offer.",
+    image:
+      "https://img.freepik.com/free-vector/modern-outlet-composition-with-flat-design_23-2147967972.jpg?t=st=1760171083~exp=1760174683~hmac=0ada10e1f69a6d4bb75444fd9e222016f277dc3459510ebc696da6de3cd20aab&w=1480",
+    link: "#",
+    read: false,
+    date: new Date().toLocaleString(),
+  },
+  {
+    id: "4",
+    type: "button_image",
+    title: "You're out of credits",
+    message:
+      "Purchase more credits to continue using our services. Limited time offer. Click the button below to buy.",
+    image:
+      "https://img.freepik.com/premium-vector/rebate-program-consumer-benefit-selling-discount-concept-money-saving-cash-back-service-cost-transfer-vector-illustration-flat_186332-774.jpg?w=1480",
+    link: "#",
+    button: "Buy Credits",
+    read: false,
+    date: new Date().toLocaleString(),
+  },
+];
+
+export default function Notifications({
+  open,
+  setOpen,
+}: {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}) {
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  useEffect(() => {
+    if (!open) {
+      setMenuOpen(false);
+    }
+  }, [open]);
+  return (
+    <div
+      className={cn(
+        "absolute top-1/3 right-0 border rounded py-0 -z-10 opacity-0 min-h-0 h-0 overflow-hidden max-h-96 min-w-64 max-w-72 overcflow-y-auto bg-background text-foreground shadow-lg transition-all duration-300",
+        open &&
+          "min-h-96 py-2 top-[150%] opacity-100 z-998 overflow-auto scrollbar-none"
+      )}
+    >
+      {/* Notification Header */}
+      <div className="w-full h-9 flex items-center px-2 justify-between border-b border-border">
+        <h3 className="font-medium mb-2 ">Notifications</h3>
+        <div className="relative">
+          <span className="cursor-pointer">
+            <EllipsisVertical onClick={toggleMenu} className={menuOpen ? "text-primary" : ""} size={20} />
+          </span>
+
+          {/* Menu */}
+          <ul
+            className={cn(
+              "absolute bg-background text-foreground py-0 top-0 right-0 rounded border shadow-md mt-2 w-fit  h-0 flex flex-col overflow-y-hidden opacity-0 transition-all duration-300 -z-10",
+              menuOpen && "h-28 top-[150%] opacity-100 z-999"
+            )}
+          >
+            <li
+              className={cn(
+                "flex gap-2 items-center hover:text-primary px-2 py-2 hover:bg-card-hover text-foreground transition-colors duration-300 cursor-pointer capitalize whitespace-nowrap text-sm"
+              )}
+            >
+              <span><CheckCheck className="text-primary" size={18} /></span>
+              <span>Mark all as read</span>
+            </li>
+            <li
+              className={cn(
+                "flex gap-2 items-center hover:text-primary px-2 py-2 hover:bg-card-hover text-foreground transition-colors duration-300 cursor-pointer capitalize whitespace-nowrap text-sm"
+              )}
+              onClick={() => window.location.href = "/settings/notifications/off"}
+            >
+              <span><BellOff className="text-primary" size={18} /></span>
+              <span>Turn off notifications</span>
+            </li>
+            <li
+              className={cn(
+                "flex gap-2 items-center hover:text-primary px-2 py-2 hover:bg-card-hover text-foreground transition-colors duration-300 cursor-pointer capitalize whitespace-nowrap text-sm"
+              )}
+              onClick={() => window.location.href = "/settings"}
+            >
+              <span><Settings className="text-primary" size={18} /></span>
+              <span>Settings</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Notifications */}
+      <div className="">
+        {notifications.map((notification) => (
+          <div
+            key={notification.id}
+            className={cn(
+              "border-b px-2 border-border last:border-0 py-2 hover:bg-card-hover transition-colors duration-300",
+              notification.read && "bg-card-hover"
+            )}
+          >
+            <div className=" flex gap-2 justify-between items-start w-full">
+              <h3 className="text-sm text-wrap break-all font-medium text-foreground">
+                {notification.title}
+              </h3>
+              {!notification.read && (
+                <span className="min-w-2 min-h-2 translate-y-1 rounded-full bg-primary"></span>
+              )}
+            </div>
+
+            <div
+              className={cn(
+                notification.type === "button_image" && "flex gap-2"
+              )}
+            >
+              {notification.type === "button_image" && (
+                <div className="mt-2 size-15 rounded overflow-hidden">
+                  <img
+                    src={notification.image}
+                    alt={notification.title}
+                    className="w-full h-full object-cover rounded"
+                  />
+                </div>
+              )}
+              <p className="text-xs mt-2 text-muted-foreground w-full text-wrap ">
+                {notification.message}
+              </p>
+            </div>
+            {notification.type === "image" && (
+              <div className="mt-2 w-full h-32 rounded overflow-hidden">
+                <img
+                  src={notification.image}
+                  alt={notification.title}
+                  className="w-full h-full object-cover rounded"
+                />
+              </div>
+            )}
+            <div
+              className={cn(
+                notification.type === "button_image" && "flex justify-end"
+              )}
+            >
+              {(notification.type === "button" ||
+                notification.type === "button_image") && (
+                <button
+                  className="mt-2 text-xs bg-button text-background px-2 py-1 rounded hover:bg-button-hover cursor-pointer "
+                  onClick={() => (window.location.href = notification.link)}
+                >
+                  {notification.button}
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+`,
+      },
+      {
+        filename: "page.tsx",
+        path: "src/app/notifications/page.tsx",
+        lang: "typescript",
+        heading: "Main Page",
+        before:
+          "This program contains main visual page and notifications. The main logic of whole notifications is written in this file from notifications visualization to notifications submission.",
+        code: `"use client";
+import { useState } from "react";
+import Notifications from "@/components/ui/notifications";
+import { Bell } from "lucide-react";
+
+export default function DevPage() {
+  const [open, setOpen] = useState(false);
+  return (
+    <section className="max-w-7xl relative flex items-center justify-end h-12 mt-16">
+      <span><Bell className={open ? "fill-foreground cursor-pointer" : "cursor-pointer hover:fill-foreground "} onClick={() => setOpen(!open)} size={24}/></span>
+      <Notifications open={open} setOpen={setOpen} />
+    </section>
+  );
+}
+`,
+      },
+      {
+        filename: "cn.ts",
+        path: "src/utils/ClassName.ts",
+        lang: "typescript",
+        after: " ",
+        code: `import clsx, { ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export default function cn(...classes: ClassValue[]) {
+  return twMerge(clsx(...classes));
+}`,
+      },
+    ],
+  }
 ];

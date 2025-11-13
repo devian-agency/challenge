@@ -1,0 +1,46 @@
+{
+  "name": "Challenge | Devian",
+  "short_name": "Challenge",
+  "description": "On Challenge we provide access to Devian's UI or functional tasks which is either given by you or personally by Devian.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f6f6",
+  "theme_color": "#1c1c1c",
+  "icons": [
+    {
+      "src": "/logo/logo-transparent.png",
+      "sizes": "16x16",
+      "type": "image/webp"
+    },
+    {
+      "src": "/logo/logo-transparent.png",
+      "sizes": "32x32",
+      "type": "image/webp"
+    },
+    {
+      "src": "/logo/logo-transparent.png",
+      "sizes": "48x48",
+      "type": "image/webp"
+    },
+    {
+      "src": "/logo/logo-transparent.png",
+      "sizes": "64x64",
+      "type": "image/webp"
+    },
+    {
+      "src": "/logo/logo-transparent.png",
+      "sizes": "128x128",
+      "type": "image/webp"
+    },
+    {
+      "src": "/logo/logo-transparent.png",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "/logo/logo-transparent.png",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}

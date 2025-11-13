@@ -1,7 +1,7 @@
-import { BellOff, EllipsisVertical } from "lucide-react";
-import cn from "@/utils/ClassName";
+"use client";
+import { BellOff, EllipsisVertical, CheckCheck, Settings } from "lucide-react";
 import { useState, useEffect } from "react";
-import { CheckCheck, Settings } from "lucide-react";
+import cn from "@/utils/ClassName";
 
 interface Text {
   id: string;
@@ -53,7 +53,7 @@ const notifications: Notification[] = [
     id: "1",
     type: "text",
     title: "Welcome!",
-    message: "Welcome to Nexus.",
+    message: "Welcome to Devian.",
     read: false,
     date: new Date().toLocaleString(),
   },
@@ -93,40 +93,6 @@ const notifications: Notification[] = [
   },
 ];
 
-const timeFormat = (dateString: string) => {
-  const date = new Date(dateString);
-  const now = new Date();
-  const diff = now.getTime() - date.getTime();
-  const seconds = Math.floor(diff / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-
-  if (seconds < 60) {
-    return `${seconds} seconds ago`;
-  } else if (minutes < 60) {
-    return `${minutes} minutes ago`;
-  } else if (hours < 24) {
-    return `${hours} hours ago`;
-  } else if (days === 1) {
-    return `yesterday`;
-  } else if (days > 7 && days < 30 && days / 7 === 1) {
-    return `a week ago`;
-  } else if (days >= 30 && days < 365 && Math.floor(days / 30) === 1) {
-    return `a month ago`;
-  } else if (days >= 365 && Math.floor(days / 365) === 1) {
-    return `a year ago`;
-  } else if (days > 7 && days < 30) {
-    return `${Math.floor(days / 7)} weeks ago`;
-  } else if (days >= 30 && days < 365) {
-    return `${Math.floor(days / 30)} months ago`;
-  } else if (days >= 365) {
-    return `${Math.floor(days / 365)} years ago`;
-  } else {
-    return `${days} days ago`;
-  }
-};
-
 export default function Notifications({
   open,
   setOpen,
@@ -148,9 +114,9 @@ export default function Notifications({
   return (
     <div
       className={cn(
-        "absolute top-[150%] right-0 border rounded py-0 -z-10 opacity-0 min-h-0 h-0 overflow-hidden max-h-96 min-w-64 max-w-72 overcflow-y-auto bg-background text-foreground shadow-lg transition-all duration-300",
+        "absolute top-1/3 right-0 border rounded py-0 -z-10 opacity-0 min-h-0 h-0 overflow-hidden max-h-96 min-w-64 max-w-72 overcflow-y-auto bg-background text-foreground shadow-lg transition-all duration-300",
         open &&
-          "min-h-96 py-2 top-[250%] opacity-100 z-998 overflow-auto scrollbar-none"
+          "min-h-96 py-2 top-[150%] opacity-100 z-998 overflow-auto scrollbar-none"
       )}
     >
       {/* Notification Header */}
@@ -252,7 +218,7 @@ export default function Notifications({
               {(notification.type === "button" ||
                 notification.type === "button_image") && (
                 <button
-                  className="mt-2 text-xs bg-button text-button-foreground px-2 py-1 rounded hover:bg-button-hover cursor-pointer "
+                  className="mt-2 text-xs bg-button text-background px-2 py-1 rounded hover:bg-button-hover cursor-pointer "
                   onClick={() => (window.location.href = notification.link)}
                 >
                   {notification.button}

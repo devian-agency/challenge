@@ -3,7 +3,7 @@ import DevPage from "../dev/page";
 
 export default function GenerateImagePage() {
   return (
-    <ImageGenerator className="w-fit">
+    <ImageGenerator className="w-150 h-150 ">
       <DevPage />
     </ImageGenerator>
   );

@@ -1,19 +1,14 @@
 "use client";
-import Card from "@/components/ui/card";
+import { useState } from "react";
+import Notifications from "@/components/ui/notifications";
+import { Bell } from "lucide-react";
 
 export default function DevPage() {
-
+  const [open, setOpen] = useState(false);
   return (
-    <section className="max-w-7xl mx-auto h-full flex items-center gap-4">
-      <Card heading="Smart AI focus" image="/images/challenge/series/60-days/day-9/image1.avif">
-        Devian shows what to focus on — based on your goals and pace.
-      </Card>
-      <Card heading="Track your progress" image="/images/challenge/series/60-days/day-9/image2.avif">
-        Track what’s done, what’s next — all in one dashboard.
-      </Card>
-      <Card className="h-92" heading="Never miss tasks" image="/images/challenge/series/60-days/day-9/image3.avif">
-      Calendar view of upcoming tasks, so you never miss a thing.
-      </Card>
+    <section className="max-w-7xl w-96 relative flex items-center justify-end h-12 mt-16">
+      <span><Bell className={open ? "fill-foreground cursor-pointer" : "cursor-pointer hover:fill-foreground "} onClick={() => setOpen(!open)} size={24}/></span>
+      <Notifications open={open} setOpen={setOpen} />
     </section>
   );
 }

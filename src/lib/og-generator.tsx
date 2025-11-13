@@ -27,6 +27,7 @@ export default function ImageGenerator({
         cacheBust: true,
         quality: 1,
         pixelRatio: 2,
+  
       });
       onGenerated?.(dataUrl);
 
@@ -35,6 +36,8 @@ export default function ImageGenerator({
       link.href = dataUrl;
       link.click();
     } catch (err) {
+      // console.log(err);
+      
       toast.error("Failed to generate image.");
     }
   };

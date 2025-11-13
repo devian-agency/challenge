@@ -18,6 +18,9 @@
   --shadow-soft: 0.6021873017743928px 0.6021873017743928px 0px #1c1c1c00,
     0px 2.288533303243457px 2.288533303243457px 0px #1c1c1c05,
     0px 10px 10px 0px #1c1c1c14, 0px -6px 6px -5px #fff;
+
+  --button-hover: #2c2c2c;
+    
   --button-shadow-dark: #ffffff26 0px 0px 20px 1.64px inset,
     #00000021 0px 0.839802px 0.503881px -0.3125px,
     #00000021 0px 1.99048px 1.19429px -0.625px,
@@ -48,6 +51,7 @@
   --color-foreground: var(--foreground);
   --color-heading: var(--heading);
   --color-button: var(--button);
+  --color-button-hover: var(--button-hover);
   --color-icon: var(--icon);
   --color-border: var(--border);
   --color-icon-background: var(--icon-background);
