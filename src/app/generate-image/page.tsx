@@ -3,7 +3,7 @@ import DevPage from "../dev/page";
 
 export default function GenerateImagePage() {
   return (
-    <ImageGenerator className="w-150 h-150 ">
+    <ImageGenerator className="max-w-5xl aspect-video" >
       <DevPage />
     </ImageGenerator>
   );

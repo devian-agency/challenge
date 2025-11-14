@@ -120,30 +120,33 @@ label:has(+ input[required], + textarea[required]):after {
   top: 2px;
 }
 
+.scrollbar-transparent{
+  scrollbar-color: var(--border) transparent;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
 @keyframes marquee {
-  from {
+  0% {
     transform: translateX(0);
   }
-  to {
-    transform: translateX(-100%);
+  100% {
+    transform: translateX(calc(-100% - 4rem));
   }
 }
 
 .animate-marquee {
   flex-shrink: 0;
   display: flex;
-  animation: marquee var(--speed) linear infinite;
+  animation: marquee linear infinite;
+  animation-duration: var(--speed);
+  will-change: transform;
 }
 
-.reverse {
+.animate-marquee.reverse {
   animation-direction: reverse;
 }
+
 .animate-marquee > * {
   flex-shrink: 0;
-}
-
-.scrollbar-transparent{
-  scrollbar-color: var(--border) transparent;
-  scrollbar-width: thin;
-  scroll-behavior: smooth;
 }

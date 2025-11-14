@@ -2343,5 +2343,101 @@ export default function cn(...classes: ClassValue[]) {
 }`,
       },
     ],
+  },
+  // Day 11
+  {
+    title: "Day 11",
+    slug: url + "day-11",
+    image: imgurl + "day-11/image.png",
+    "sub-title": "Infinite Carousel",
+    description:
+      "The Infinite Carousel is a simple and elegant carousel component that feels smooth and you can even set direction of the carousel left/right and change speed.",
+    by: {
+      name: "Gajender",
+      profile: imgurl + "day-11/profile.jpg",
+      github: "https://github.com/Gajendrasuman",
+      twitter: "https://x.com/Averrraagggeeee",
+    },
+    challengedOn: "13-11-2025",
+    completedOn: "14-11-2025",
+    code: [
+      {
+        filename: "carousel.tsx",
+        path: "src/components/ui/carousel.tsx",
+        lang: "Typescript",
+        code: `import cn from "@/utils/ClassName";
+        
+        interface CarouselProps {
+          speed?: number;
+          reverse?: boolean;
+          children: React.ReactNode;
+        }
+        
+        export default function Carousel({ speed = 20, reverse = false, children }: CarouselProps) {
+          return(
+            <div className="overflow-hidden relative w-full mt-12">
+          <div
+            className={cn(
+              "flex gap-16 items-center whitespace-nowrap w-max",
+              reverse ? "flex-row-reverse" : "",
+          )}
+          >
+            <ul
+              className={cn(
+                "flex gap-16 animate-marquee",
+                reverse ? "reverse" : "",
+          )}
+              style={{"--speed": speed + "s"} as React.CSSProperties}
+            >
+              {children}
+            </ul>
+        
+            <ul
+              className={cn(
+                "flex gap-16 animate-marquee",
+                reverse ? "reverse" : "",
+          )}
+              style={{"--speed": speed + "s"} as React.CSSProperties}
+            >
+              {children}
+            </ul>
+          </div>
+        </div>
+          )
+        }
+        
+        `,
+      },
+      {
+        filename: "globals.css",
+        path: "src/styles/globals.css",
+        lang: "CSS",
+        after: " ",
+        code: `@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% - 4rem));
+  }
+}
+
+.animate-marquee {
+  flex-shrink: 0;
+  display: flex;
+  animation: marquee linear infinite;
+  animation-duration: var(--speed);
+  will-change: transform;
+}
+
+.animate-marquee.reverse {
+  animation-direction: reverse;
+}
+
+.animate-marquee > * {
+  flex-shrink: 0;
+}`,
+      }
+    ],
   }
 ];

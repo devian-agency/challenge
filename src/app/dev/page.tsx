@@ -1,14 +1,26 @@
 "use client";
-import { useState } from "react";
-import Notifications from "@/components/ui/notifications";
-import { Bell } from "lucide-react";
+import Carousel from "@/components/ui/carousel";
+import P from "@/components/ui/p";
+import Heading from "@/components/ui/heading";
 
 export default function DevPage() {
-  const [open, setOpen] = useState(false);
   return (
-    <section className="max-w-7xl w-96 relative flex items-center justify-end h-12 mt-16">
-      <span><Bell className={open ? "fill-foreground cursor-pointer" : "cursor-pointer hover:fill-foreground "} onClick={() => setOpen(!open)} size={24}/></span>
-      <Notifications open={open} setOpen={setOpen} />
+    <section className="w-full max-w-7xl mx-auto justify-center items-center flex flex-col px-6 h-full">
+      <Heading className="">
+        Trusted by leading companies
+      </Heading>
+      <Carousel speed={10}>
+        <P className="text-gray-500">Amazon</P>
+        <P className="text-gray-500">Flipkart</P>
+        <P className="text-gray-500">BlinkIt</P>
+        <P className="text-gray-500">Meesho</P>
+        <P className="text-gray-500">Mintra</P>
+        <P className="text-gray-500">Shopsy</P>
+        <P className="text-gray-500">Big Basket</P>
+        <P className="text-gray-500">Jio Mart</P>
+        <P className="text-gray-500">Zomato</P>
+        <P className="text-gray-500">Swiggy</P>
+      </Carousel>
     </section>
   );
 }
