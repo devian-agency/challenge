@@ -2439,5 +2439,64 @@ export default function cn(...classes: ClassValue[]) {
 }`,
       }
     ],
+  },
+  // Day 12
+  {
+    title: "Day 12",
+    slug: url + "day-12",
+    image: imgurl + "day-12/image.png",
+    "sub-title": "Glassmorphism Background",
+    description:
+      "The Glassmorphism Background is a simple and elegant background component that feels smooth.",
+    by: {
+      name: "Gajender",
+      profile: imgurl + "day-12/profile.jpg",
+      github: "https://github.com/Gajendrasuman",
+      twitter: "https://x.com/Averrraagggeeee",
+    },
+    challengedOn: "14-11-2025",
+    completedOn: "20-11-2025",
+    code: [{
+        filename: "glassmorphism.tsx",
+        path: "src/components/ui/glassmorphism.tsx",
+        lang: "Typescript",
+        code: `<section className="relative h-full">
+      <div className="absolute blur-2xl w-1/3 top-0 left-0 aspect-square rounded-full bg-linear-60 from-[#f124fa] via-[#ed892c] to-[#30faaf] ">
+      </div>
+      <div className="absolute right-0 blur-3xl bottom-0 w-1/3 aspect-square rounded-full bg-linear-60 from-[#27f627] to-[#1ac1eb]">
+      </div>
+      <div className="absolute size-6/7 left-1/2 top-1/2 -translate-1/2 bg-white/10 backdrop-blur-3xl">
+      <Heading className="mt-64">
+        Welcome to Devian, where you can unleash your creativity and build amazing applications with ease!
+      </Heading>
+      </div>
+    </section>`
+      },
+    {
+        filename: "Heading.tsx",
+        path: "src/components/ui/Heading.tsx",
+        lang: "Typescript",
+        code: `import cn from "@/utils/ClassName";
+        interface Props extends React.HTMLAttributes<HTMLHeadingElement> {
+          as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+          className?: string;
+        }
+        
+        export default function Heading({ as, className, children, ...props }: Props) {
+          const Component = as || "h2";
+          return (
+            <Component
+              className={cn(
+                "xl:text-[58px] mt-6 md:text-[51px] text-[40px] first-letter:capitalize font-semibold text-center max-w-[400px] md:max-w-[600px] xl:max-w-[700px] mx-auto text-heading tracking-tight leading-16",
+                className
+              )}
+              {...props}
+            >
+              {children}
+            </Component>
+          );
+        }
+        `
+      }]
   }
 ];
